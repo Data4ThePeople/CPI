@@ -1,6 +1,6 @@
 ---
-title: Diesel Touches 44.4% of Inflation. Gasoline Touches 2.9%.
-subtitle: Gasoline gets the attention because we buy it ourselves every week. Diesel sits quietly behind nearly half of what the inflation index actually measures.
+title: The Fuel You Don't Buy Impacts Half Your Expenses
+subtitle: Households purchase almost no diesel directly — 0.086% of the Consumer Price Index. It still reaches 44.4% of it, fifteen times gasoline's direct weight.
 slug: diesel-cpi-44-percent
 date: 2026-09-09
 description: Diesel is an input cost inside 44.4% of the Consumer Price Index, against gasoline's 2.9% — a map of every category it reaches.
