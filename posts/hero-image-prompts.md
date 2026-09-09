@@ -45,51 +45,45 @@ text and numbers, and this concept is almost entirely small text and numbers.
 > background, hard specular highlights on the chrome, deep shadow. High
 > contrast, product-photography lighting, cinematic. --ar 16:9
 
-## D — Scale the type to the number
+## D — Scale the price to the number — BUILT, no model needed
 
-The sign itself carries the argument: DIESEL is set enormous, GASOLINE is set
-tiny, and the ratio between them *is* the finding. Pump colors do the rest —
-red for gasoline, green for diesel, the way the nozzles are colored.
+The point is that the diesel price deserves about **15x the attention** of the
+gasoline price, so the price digits are set at that ratio. This one is pure
+typography, so it is rendered exactly rather than asked of a model that cannot
+measure a ratio:
 
-**Pick a ratio first.** 44.4 ÷ 2.9 = **15.3**, and there are two honest ways to
-draw that:
+```
+PYTHONPATH=src .venv/bin/python -m cpi_diesel.render_static --sign linear
+PYTHONPATH=src .venv/bin/python -m cpi_diesel.render_static --sign area
+```
 
-| | Height ratio | What it means |
-|---|---|---|
-| **Linear** | **15.3×** | Letter height scales with the number. Maximum drama; GASOLINE ends up almost too small to read, which is arguably the point. |
-| **Area** | **3.9×** | Letter *area* scales with the number (√15.3). Reads as ~15× more ink on the sign, because that's how eyes judge type. |
+- `posts/cpi-diesel-sign-linear.png` — digit **height** carries the ratio (15x).
+- `posts/cpi-diesel-sign-area.png` — digit **area** carries it (3.9x height).
 
-Linear is the bolder image. Area is the one that won't get you a "that chart
-exaggerates" reply — it's the same reason bubble charts size by area, not
-radius. My call: use **linear** here and let the caption say 15×, because this
-is an illustration making a point rather than a chart being read off.
+Both are 1200x630 at 2x. Prices come from the FRED weekly retail series and the
+percentages from the CPI payload, so nothing is typed in by hand and nothing
+goes stale: rerun before publishing and the sign carries that week's price.
 
-> Photorealistic night photograph of a roadside fuel price sign, shot
-> straight on. The board has two rows. The top row reads GASOLINE in small
-> glowing red LED letters — deliberately tiny, occupying a narrow strip at the
-> very top of the board. Below it, filling the entire rest of the sign edge to
-> edge, the word DIESEL in enormous glowing green LED letters roughly fifteen
-> times the height of the word above it, so large the letters are cropped by
-> the frame. Black background, the two colors of light bleeding onto wet
-> asphalt below. Hard specular highlights on the sign's aluminum frame, deep
-> shadow, high contrast, cinematic product lighting, 35mm, high detail.
-> --ar 16:9
+**What scales and what does not.** The price digits scale, because the claim is
+about how much attention each number deserves. The fuel names stay a constant
+size so the sign stays readable. The prices themselves are only 1.4x apart —
+stretching *them* to 15x would be a different and false claim — so the header
+says "each price sized by how much of your spending that fuel touches" and the
+footer repeats that the sizing is CPI share, not price ratio.
 
-For the area-proportional version, swap "roughly fifteen times the height" for
-"roughly four times the height."
+**Linear or area.** Linear is the stronger image and is the default. Area is
+the one to reach for if the sign will sit beside the treemap, where a reader
+might compare the two encodings. Eyes judge type by area, so at 15x height the
+ink ratio is nearer 234x — the same trap bubble charts fall into sizing by
+radius.
 
-**On red and green.** It's the correct pump convention, and it's also the exact
-axis red-green colorblindness runs along — around 8% of men will see those two
-as near-identical. It matters less here than it would in the chart, because the
-*size* is doing the work and the color is only decoration. If you want it to
-hold anyway, push the green toward a deep teal and the red toward a warmer
-orange-red; both stay readable as "diesel green" and "gasoline red" while
-separating properly under protanopia. This is the same constraint documented
-for the brand teal and coral in the house palette.
+**On red and green.** It is the pump convention, and it is also the exact axis
+red-green colorblindness runs along. The built version already pushes the red
+warm (`#f04a22`) and the green teal (`#12b981`) so the pair separates under
+protanopia. Size is doing the work regardless; the color is reinforcement.
 
-Because this variant is pure typography, we can render it exactly rather than
-asking a model to hit a 15.3× ratio it cannot measure — same pipeline as the
-card, real type, exact proportions. Say the word.
+If you would still rather have a photographic sign, prompts A-C below stand,
+and this rendered version can be composited over a generated plate.
 
 ---
 
