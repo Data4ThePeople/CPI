@@ -64,13 +64,11 @@ A few things worth noticing on the map:
 
 ## The shoe, and when it drops
 
-*[Ending — you'll rewrite this, but a starting point:]*
-
 Supply chains are shock absorbers. They are very good at their job, right up until they aren't. Every week that diesel sits near six dollars, someone is deciding whether to eat the cost, thin an already thin margin, or pass it along. Those decisions are being made right now, quietly, in categories covering nearly half of what you spend.
 
 Gasoline is the price you watch. Diesel is the price you pay.
 
-So the next time you drive past that sign, look at the second number down — the one you've spent your whole life ignoring. Then remember 44.4%.
+So the next time you drive past that sign, look at the glowing green numbers at the bottom — the numbers you may usually ignore. Then remember 44.4%.
 
 You'll know what it means now.
 
