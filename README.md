@@ -51,10 +51,16 @@ In the post's Markdown, either drop the raw iframe in (the converter turns it
 into `html_embed`, `fullWidth`, `embed_height`):
 
 ```html
-<iframe src="https://<pages-host>/cpi-diesel/#embed=1"
+<iframe src="https://data4thepeople.github.io/CPI/dist/index.html#embed=1"
         width="100%" height="780" loading="lazy" style="border:0"
         title="Diesel in the CPI basket"></iframe>
 ```
+
+Pages serves this repo from `main` at the root, so the production file is
+`dist/index.html` and the URL carries that path — `…github.io/CPI/` itself
+404s, exactly as it does for the sibling projects. `dist/index.html` is the
+only build output that is tracked; `#embed=1` is what selects the compact
+framed layout.
 
 …or write `::: embed 780px` to emit an empty slice and paste into it in the
 Prismic dashboard.
