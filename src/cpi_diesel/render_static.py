@@ -285,12 +285,78 @@ def render(mode: str = "all") -> Path:
     return out
 
 
+# Social cards render at a few hundred pixels wide in a feed, where an 81-tile
+# treemap is unreadable. The card carries the comparison alone, at a size that
+# survives being shrunk. 1200x630 is the standard link-preview ratio.
+CARD_W, CARD_H = 1200, 630
+
+
+def render_card() -> Path:
+    """The link-preview card: the two numbers, nothing else."""
+    payload = build_payload()
+    summary = payload["summary"]
+
+    gas = TIER_COLOR["gasoline_direct"]
+    dsl = TIER_COLOR["direct_diesel"]
+    mid = CARD_W / 2
+
+    parts = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{CARD_W}" '
+        f'height="{CARD_H}" viewBox="0 0 {CARD_W} {CARD_H}">',
+        f'<rect width="{CARD_W}" height="{CARD_H}" fill="{PARCH}"/>',
+        # Two blocks, areas in the same ratio as the numbers, so the graphic
+        # says what the figures say before anyone reads them.
+        f'<rect x="64" y="300" width="{(summary["gasoline_direct"] / summary["exposed_share"]) * 440:.0f}" '
+        f'height="26" fill="{gas}"/>',
+        f'<rect x="{mid + 24:.0f}" y="300" width="440" height="26" fill="{dsl}"/>',
+    ]
+    parts.append(_text(64, 92, "Gasoline gets the attention.", size=44, weight="bold"))
+    parts.append(_text(64, 146, "Diesel gets everything else.", size=44, weight="bold", fill=dsl))
+    parts.append(_text(64, 190, "Share of the Consumer Price Index each fuel reaches",
+                       size=21, fill=MUTED))
+
+    parts.append(_text(64, 278, f'{summary["gasoline_direct"]:.1f}%', size=86,
+                       weight="bold", fill=gas))
+    parts.append(_text(64, 360, "GASOLINE", size=19, weight="bold", fill=INK))
+    parts.append(_text(64, 386, "Bought directly. One line item.", size=18, fill=MUTED))
+
+    parts.append(_text(mid + 24, 278, f'{summary["exposed_share"]}%', size=86,
+                       weight="bold", fill=dsl))
+    parts.append(_text(mid + 24, 360, "DIESEL", size=19, weight="bold", fill=INK))
+    parts.append(_text(mid + 24, 386, "An input cost inside almost half the basket.",
+                       size=18, fill=MUTED))
+
+    parts.append(f'<line x1="64" y1="448" x2="{CARD_W - 64}" y2="448" stroke="{GRID}"/>')
+    parts.append(_text(64, 492,
+                       f'Diesel bought directly is just {summary["diesel_direct"]}% — '
+                       f'{summary["gasoline_over_diesel_direct"]}x smaller than gasoline. '
+                       f'It reaches the rest as freight.',
+                       size=20, fill=INK))
+    parts.append(_text(64, 534,
+                       f'{config.PUBLISHER_NAME}  ·  Weights: {config.SOURCE_PUBLISHER}, '
+                       f'relative importance, December {config.RI_YEAR}',
+                       size=16, fill=MUTED))
+    parts.append("</svg>")
+
+    config.DIST_DIR.mkdir(parents=True, exist_ok=True)
+    out = config.DIST_DIR / "cpi_diesel_card.svg"
+    out.write_text("\n".join(parts))
+    return out
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--mode", default="all",
                         choices=["all", "gasoline", "diesel"])
     parser.add_argument("--all-modes", action="store_true")
+    parser.add_argument("--card", action="store_true",
+                        help="render the 1200x630 link-preview card instead")
     args = parser.parse_args()
+    if args.card:
+        path = render_card()
+        print(f"wrote {path.relative_to(config.ROOT)} "
+              f"({path.stat().st_size / 1e3:.0f} KB)")
+        return 0
     modes = ["all", "gasoline", "diesel"] if args.all_modes else [args.mode]
     for mode in modes:
         path = render(mode)
