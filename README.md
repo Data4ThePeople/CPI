@@ -73,7 +73,11 @@ Prismic dashboard.
 - keeps one provenance stamp, the single credit line that survives;
 - swaps the stat tiles and buttons to terse labels so all four tiles hold one
   row down to ~620px — the full sentences orphan the fourth tile onto a row of
-  its own and cost the chart 75px.
+  its own and cost the chart 75px;
+- below ~620px drops the legend and the provenance stamp entirely, replacing
+  them with a single line pointing to the desktop version. Together they were
+  ~125px of a fixed 780, and on a phone the treemap needs that far more than it
+  needs a color key it has no room to use.
 
 Sizing is measured off the element, never the viewport, and the responsive
 rules are **container queries** rather than media queries: inside the Prismic
@@ -82,8 +86,8 @@ oEmbed the viewport does not describe the space the page is actually given. A
 firing anything.
 
 Verified at 380×780, 700×780 and 1100×780 — no scrollbars, no clipped labels.
-Below ~620px the legend goes two-up and sheds its suffixes, which buys the
-treemap back about 110px on a phone.
+On a 380px phone frame the chart gets ~570px of the 780, against ~250px before
+any of this.
 
 `dist/artifact.html` sets `window.CPI_STANDALONE`, because that host frames the
 page but supplies its own document chrome — there the full layout is correct.

@@ -126,6 +126,7 @@ canvas { display: block; width: 100%; height: auto; border: 1px solid var(--grid
 /* Standalone, the notes below already carry the source; the stamp is only
    needed once the embedded layout hides them. */
 .source { display: none; }
+.mobile-note { display: none; }
 .source a { color: var(--t-diesel); }
 
 /* --- notes -------------------------------------------------------------- */
@@ -224,13 +225,15 @@ html.embed .source {
   html.embed .stat .lab { font-size: 9px; line-height: 1.3; }
   html.embed .controls button { padding: 5px 10px; font-size: 12px; }
   html.embed .readout { font-size: 11px; }
-  html.embed .legend {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1px 10px; font-size: 10px;
+  /* A phone frame cannot afford the legend or the provenance stamp: together
+     they were ~125px of a fixed 780, and the treemap needs it more. They are
+     replaced by a pointer to the full page, which carries both. */
+  html.embed .legend,
+  html.embed .source { display: none; }
+  html.embed .mobile-note {
+    display: block; flex: 0 0 auto; margin: 0;
+    font-size: 10.5px; color: var(--muted); text-align: center;
   }
-  html.embed .legend .lsuffix { display: none; }
-  html.embed .legend .sw { width: 10px; height: 10px; flex-basis: 10px; }
-  html.embed .source { font-size: 9.5px; }
 }
 
 /* Fallback for engines without container queries. */
