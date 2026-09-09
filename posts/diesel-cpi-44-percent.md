@@ -1,5 +1,5 @@
 ---
-title: The Fuel You Don't Buy Impacts Half Your Expenses
+title: Gasoline gets all the attention. Diesel is the price that really matters.
 subtitle: Households purchase almost no diesel directly — 0.086% of the Consumer Price Index. It still reaches 44.4% of it, fifteen times gasoline's direct weight.
 slug: diesel-cpi-44-percent
 date: 2026-09-09
