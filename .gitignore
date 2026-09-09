@@ -2,6 +2,9 @@
 __pycache__/
 *.py[cod]
 data/raw/
-dist/
+# Build output. dist/index.html is the production file served by Pages and
+# IS tracked; everything else (artifact.html, the static SVGs) is disposable.
+dist/*
+!dist/index.html
 .env
 .DS_Store

@@ -1,0 +1,18 @@
+# GitHub Pages serves this repository from the root, so Jekyll would render
+# README.md as a public page at /CPI/ — a developer README about build commands
+# and BLS indent defects, several thousand crawlable words against the chart's
+# few hundred, with a self-referential canonical claiming to be the preferred
+# URL. That is the likelier page to rank for a query about diesel and the CPI,
+# which is exactly backwards.
+#
+# Excluding it stops Pages serving that page. The README still renders on
+# github.com, which is the repo UI rather than Pages, so nothing is lost.
+# There is no robots.txt lever here: data4thepeople.github.io has no
+# organization Pages site, so /robots.txt 404s and per-page tags are all that
+# exist.
+exclude:
+  - README.md
+  - src
+  - tests
+  - data
+  - requirements.txt
