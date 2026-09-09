@@ -54,10 +54,13 @@
 
   <div class="legend" id="legend"></div>
 
-  {# Shown only in a narrow frame, where the legend and the stamp are dropped
-     to give the treemap back the height they were costing it. #}
-  <p class="mobile-note">See the desktop version for the full legend, footnotes
-    and disclosures.</p>
+  {# Both shown only in a narrow frame, where the full legend and the stamp are
+     dropped to give the treemap back the height they were costing it. The key
+     still has to carry the encoding, so it collapses the six-step diesel ramp
+     into one strip rather than nine rows. #}
+  <div class="keymini" id="keymini"></div>
+  <p class="mobile-note">Full legend, footnotes and disclosures on the desktop
+    version.</p>
 
   {# The one credit line that survives the embedded layout, where .notes is
      hidden. Standalone it would only repeat the source paragraph below. #}

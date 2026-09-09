@@ -428,8 +428,36 @@
     });
   }
 
+  /* The narrow-frame key. Nine rows will not fit, but dropping the key
+     altogether leaves the colors unexplained, so the six diesel tiers collapse
+     into a single light-to-dark strip and only the three categorical fills
+     keep their own swatch. */
+  function buildMiniKey() {
+    var host = document.getElementById("keymini");
+    if (!host) return;
+    var ramp = [
+      "light_freight", "freight_dependent_service", "heavy_freight",
+      "cold_chain", "diesel_service", "direct_diesel"
+    ].map(function (k) {
+      return '<i style="background:' + TIER_COLOR[k] + '"></i>';
+    }).join("");
+
+    var html = '<span class="k"><span class="ramp">' + ramp + "</span>" +
+      "Touched by diesel <b>" + SUM.exposed_share + "%</b></span>";
+    [["gasoline_direct", "Gasoline"],
+     ["other_fuel", "Other fuel"],
+     ["none", "No diesel"]].forEach(function (pair) {
+      var slot = SUM.by_tier[pair[0]];
+      html += '<span class="k"><i style="background:' + TIER_COLOR[pair[0]] +
+        '"></i>' + pair[1] + " <b>" +
+        (slot ? slot.weight.toFixed(1) : "0.0") + "%</b></span>";
+    });
+    host.innerHTML = html;
+  }
+
   buildControls();
   buildLegend();
+  buildMiniKey();
   relabelControls();
   setMode("all");
 

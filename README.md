@@ -74,10 +74,12 @@ Prismic dashboard.
 - swaps the stat tiles and buttons to terse labels so all four tiles hold one
   row down to ~620px — the full sentences orphan the fourth tile onto a row of
   its own and cost the chart 75px;
-- below ~620px drops the legend and the provenance stamp entirely, replacing
-  them with a single line pointing to the desktop version. Together they were
-  ~125px of a fixed 780, and on a phone the treemap needs that far more than it
-  needs a color key it has no room to use.
+- below ~620px drops the nine-row legend and the provenance stamp — together
+  ~125px of a fixed 780 — for a two-line minimal key plus a pointer to the
+  desktop version. The key collapses the six diesel tiers into one light-to-dark
+  strip labelled with the total, and keeps separate swatches only for the three
+  categorical fills (gasoline, other fuel, no diesel), so the encoding still
+  reads without spending the height nine rows would cost.
 
 Sizing is measured off the element, never the viewport, and the responsive
 rules are **container queries** rather than media queries: inside the Prismic
