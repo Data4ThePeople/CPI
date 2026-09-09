@@ -44,7 +44,9 @@ Use the toggle. Click *What gasoline touches* and a single small red rectangle l
 
 That is the argument, in one click.
 
-::: embed 780px
+<iframe src="https://data4thepeople.github.io/CPI/dist/index.html#embed=1"
+        width="100%" height="780" loading="lazy" style="border:0"
+        title="Diesel in the CPI basket"></iframe>
 
 ![Treemap of the Consumer Price Index, with every category sized by relative importance and colored by how diesel reaches it](cpi-diesel-treemap.png)
 
@@ -57,6 +59,20 @@ A few things worth noticing on the map:
 **The biggest box is gray.** Owners' equivalent rent — what a homeowner would pay to rent their own house — is 26.2% of the index by itself, and no truck touches it. Add rent and you have a third of the basket that diesel simply cannot reach. That gray mass is why the number is 44.4% and not 80%.
 
 **Gasoline's box is small, and it is an island.** It is 2.9%, and unlike diesel it is not an input to much else on the map. You buy it; that's the end of it.
+
+## The shoe, and when it drops
+
+*[Ending — you'll rewrite this, but a starting point:]*
+
+Supply chains are shock absorbers. They are very good at their job, right up until they aren't. Every week that diesel sits near six dollars, someone is deciding whether to eat the cost, thin an already thin margin, or pass it along. Those decisions are being made right now, quietly, in categories covering nearly half of what you spend.
+
+Gasoline is the price you watch. Diesel is the price you pay.
+
+So the next time you drive past that sign, look at the second number down — the one you've spent your whole life ignoring. Then remember 44.4%.
+
+You'll know what it means now.
+
+• • •
 
 ::: blurb How we got to 44.4%
 - The weights are the Bureau of Labor Statistics' published relative importances for December 2025. Those are not our numbers.
@@ -76,15 +92,3 @@ Because gasoline in the CPI is almost entirely a final good. Households buy it a
 ### When do diesel prices actually show up in what I pay?
 
 Not immediately. Freight contracts, inventory already sitting in warehouses, and retailer margins all absorb some of the move before shelf prices adjust, which usually takes months rather than weeks. That lag is what makes diesel easy to ignore right up until it isn't.
-
-## The shoe, and when it drops
-
-*[Ending — you'll rewrite this, but a starting point:]*
-
-Supply chains are shock absorbers. They are very good at their job, right up until they aren't. Every week that diesel sits near six dollars, someone is deciding whether to eat the cost, thin an already thin margin, or pass it along. Those decisions are being made right now, quietly, in categories covering nearly half of what you spend.
-
-Gasoline is the price you watch. Diesel is the price you pay.
-
-So the next time you drive past that sign, look at the second number down — the one you've spent your whole life ignoring. Then remember 44.4%.
-
-You'll know what it means now.
