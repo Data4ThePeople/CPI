@@ -1,31 +1,19 @@
 ---
-title: Diesel Just Set a Record. The Number to Remember Is 44.4%.
-subtitle: Gasoline gets the headlines because we buy it ourselves. Diesel sits quietly behind nearly half of what the inflation index actually measures.
+title: Diesel Touches 44.4% of Inflation. Gasoline Touches 2.9%.
+subtitle: Gasoline gets the attention because we buy it ourselves every week. Diesel sits quietly behind nearly half of what the inflation index actually measures.
 slug: diesel-cpi-44-percent
 date: 2026-09-09
-description: Diesel hit an all-time high of $5.97 a gallon this week. It is an input cost inside 44.4% of the Consumer Price Index — against gasoline's 2.9%.
-keywords: diesel prices, diesel record, CPI, inflation, freight costs, trucking, supply chain, consumer price index, relative importance
+description: Diesel is an input cost inside 44.4% of the Consumer Price Index, against gasoline's 2.9% — a map of every category it reaches.
+keywords: diesel prices, CPI, inflation, freight costs, trucking, supply chain, consumer price index, relative importance
 ---
 
-When you drive past a gas station and see diesel churning toward $6 a gallon, what crosses your mind? Maybe: *not my problem — my car doesn't run on diesel.*
+When you drive past a gas station and see diesel prices steadily churning toward $6 a gallon (the highest ever on record, by the way), what crosses your mind? Maybe: *not my problem — my car doesn't run on diesel.*
 
 Think again.
 
 Do you send your kids to school on a bus? That bus runs on diesel. Do you eat at restaurants or shop at a grocery store? The food you're buying took a ride on a truck burning diesel. Do you order things from Amazon? Those trucks promising "happiness is inside" have some happy diesel in their tanks. Do you use electricity? If it comes from a coal-fired plant, the coal it burns most likely arrived on a train burning diesel.
 
 Each time I pass a gas station, I think about this — how much diesel is the backbone of our economy. And then my next thought is: how much longer can the supply chain absorb this before it reaches us? The proverbial shoe has to drop eventually, pushing these costs through to the finished goods and services we rely on every day.
-
-## The record nobody put on the news
-
-As of September 7, retail diesel hit **$5.97 a gallon** — the highest price ever recorded, passing the June 2022 peak of $5.81. It is three cents from a six-dollar handle.
-
-Here is the part that should bother you. Gasoline is at $4.16. That is nowhere near its own record of $5.01, set in June 2022. The gap between the two fuels is now **$1.81 a gallon — the widest it has ever been.**
-
-Over the past year diesel is up 58%. Gasoline is up 30%.
-
-So the fuel that gets the attention is comparatively calm, and the fuel almost nobody watches is at an all-time high. That divergence is the whole story.
-
-## Commit this to memory: 44.4%
 
 The point of today's post is to plant a number in your head, so that the next time you pass that sign you don't ignore it.
 
