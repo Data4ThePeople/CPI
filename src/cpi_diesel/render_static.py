@@ -1,0 +1,303 @@
+"""Static treemap for print and blog embedding.
+
+    python -m cpi_diesel.render_static [--mode all|gasoline|diesel]
+
+Writes SVG. Pure stdlib -- the same squarified layout the canvas renderer
+uses, so the static image and the interactive page agree pixel for pixel in
+proportion. Keeping it dependency-free means the whole project still runs on
+the 3.9 interpreter in .venv with only Jinja2 installed.
+"""
+from __future__ import annotations
+
+import argparse
+from pathlib import Path
+from typing import Dict, List
+from xml.sax.saxutils import escape
+
+from . import config
+from .transform import MAJOR_ORDER, build_payload
+
+W, H = 1600, 1000
+PAD, GAP, HEADER = 28, 3, 22
+TOP = 168          # masthead + scoreboard
+BOTTOM = 132       # legend + footnote
+
+PARCH, PANEL, INK, MUTED, GRID = "#faf3df", "#f4ead2", "#2b2317", "#6b5d3f", "#cdbb96"
+DIM = "#ece4cd"
+TIER_COLOR = {
+    "light_freight": "#cfe0e8", "freight_dependent_service": "#a8c6d4",
+    "heavy_freight": "#7aa7bd", "cold_chain": "#4d84a3",
+    "diesel_service": "#2e6485", "direct_diesel": "#17455f",
+    "gasoline_direct": "#712b13", "other_fuel": "#b9a06a", "none": "#e2dac4",
+}
+LIGHT_TYPE = {"direct_diesel", "diesel_service", "cold_chain", "gasoline_direct"}
+LEGEND_ORDER = [
+    "direct_diesel", "diesel_service", "cold_chain", "heavy_freight",
+    "freight_dependent_service", "light_freight", "gasoline_direct",
+    "other_fuel", "none",
+]
+SERIF = "Georgia, 'Times New Roman', serif"
+
+
+def _worst(row, side, scale):
+    total = sum(n["weight"] * scale for n in row)
+    lo = min(n["weight"] * scale for n in row)
+    hi = max(n["weight"] * scale for n in row)
+    return max(side * side * hi / (total * total), total * total / (side * side * lo))
+
+
+def squarify(nodes: List[Dict], x, y, w, h) -> List[Dict]:
+    """Bruls/Huizing/van Wijk squarified treemap. Mirrors static/treemap.js."""
+    out = []
+    items = sorted(nodes, key=lambda n: -n["weight"])
+    total = sum(n["weight"] for n in items)
+    if total <= 0 or w <= 0 or h <= 0:
+        return out
+    scale = (w * h) / total
+
+    i = 0
+    while i < len(items):
+        side = min(w, h)
+        row = [items[i]]
+        i += 1
+        while i < len(items) and _worst(row + [items[i]], side, scale) <= _worst(row, side, scale):
+            row.append(items[i])
+            i += 1
+        thickness = sum(n["weight"] * scale for n in row) / side
+        offset = 0.0
+        for node in row:
+            length = (node["weight"] * scale) / thickness
+            if w >= h:
+                out.append({"node": node, "x": x, "y": y + offset, "w": thickness, "h": length})
+            else:
+                out.append({"node": node, "x": x + offset, "y": y, "w": length, "h": thickness})
+            offset += length
+        if w >= h:
+            x += thickness
+            w -= thickness
+        else:
+            y += thickness
+            h -= thickness
+    return out
+
+
+def _grouped(payload) -> List[Dict]:
+    """Groups with sub-threshold residuals pooled, matching the canvas view."""
+    out = []
+    for group in MAJOR_ORDER:
+        mine = [r for r in payload["records"] if r["major_group"] == group]
+        items = [r for r in mine if r["weight"] >= config.SLIVER_THRESHOLD]
+        small = [r for r in mine if r["weight"] < config.SLIVER_THRESHOLD]
+        if small:
+            items = items + [{
+                "display_name": "Other small items",
+                "weight": round(sum(r["weight"] for r in small), 3),
+                "tier": small[0]["tier"],
+                "diesel_exposed": all(r["diesel_exposed"] for r in small),
+            }]
+        out.append({
+            "name": group,
+            "weight": sum(r["weight"] for r in mine),
+            "items": sorted(items, key=lambda r: -r["weight"]),
+        })
+    return out
+
+
+def _text(x, y, s, size=13, fill=INK, weight="normal", anchor="start", opacity=1.0):
+    return (
+        f'<text x="{x:.1f}" y="{y:.1f}" font-family="{SERIF}" font-size="{size}" '
+        f'font-weight="{weight}" fill="{fill}" text-anchor="{anchor}" '
+        f'opacity="{opacity}">{escape(s)}</text>'
+    )
+
+
+def _tw(s: str, size: float) -> float:
+    """Approximate rendered width. Georgia averages ~0.50 em across mixed case;
+    0.54 is a deliberate overestimate so labels never overflow their tile."""
+    return len(s) * size * 0.54
+
+
+def _fits(s: str, size: float, width: float) -> bool:
+    return _tw(s, size) <= width
+
+
+def _wrap(text: str, size: float, width: float, max_lines: int):
+    """Greedy word wrap, or None if the text will not fit in max_lines."""
+    lines, current = [], ""
+    for word in text.split():
+        trial = f"{current} {word}".strip()
+        if _fits(trial, size, width) or not current:
+            current = trial
+        else:
+            lines.append(current)
+            current = word
+            if len(lines) == max_lines:
+                return None
+    if current:
+        lines.append(current)
+    if len(lines) > max_lines or any(not _fits(l, size, width) for l in lines):
+        return None
+    return lines
+
+
+def render(mode: str = "all") -> Path:
+    payload = build_payload()
+    summary = payload["summary"]
+
+    def lit(rec):
+        if mode == "all":
+            return True
+        if mode == "gasoline":
+            return rec["tier"] == "gasoline_direct"
+        return rec.get("diesel_exposed", False)
+
+    parts = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" '
+        f'viewBox="0 0 {W} {H}">',
+        f'<rect width="{W}" height="{H}" fill="{PARCH}"/>',
+    ]
+
+    # --- masthead -----------------------------------------------------------
+    parts.append(_text(PAD, 48, "Gasoline gets the attention. Diesel gets everything else.",
+                       size=34, weight="bold"))
+    parts.append(_text(PAD, 76,
+                       "Every mutually exclusive category in the Consumer Price Index, "
+                       "sized by its published relative importance.",
+                       size=16, fill=MUTED))
+
+    # --- scoreboard ---------------------------------------------------------
+    stats = [
+        (f'{summary["gasoline_direct"]}%', "Gasoline, bought directly", TIER_COLOR["gasoline_direct"]),
+        (f'{summary["diesel_direct"]}%',
+         f'Diesel, bought directly — {summary["gasoline_over_diesel_direct"]}× smaller',
+         TIER_COLOR["direct_diesel"]),
+        (f'{summary["exposed_share"]}%',
+         f'Of the index diesel reaches — {summary["reach_ratio"]}× gasoline',
+         TIER_COLOR["direct_diesel"]),
+        (f'{summary["embedded_diesel"]}%',
+         f'Embedded diesel cost — {summary["embedded_vs_gasoline"]}× gasoline',
+         TIER_COLOR["direct_diesel"]),
+    ]
+    box_w = (W - PAD * 2 - 3 * 14) / 4
+    for i, (num, label, color) in enumerate(stats):
+        bx = PAD + i * (box_w + 14)
+        parts.append(f'<rect x="{bx:.1f}" y="98" width="{box_w:.1f}" height="52" '
+                     f'fill="{PANEL}" stroke="{GRID}" rx="3"/>')
+        parts.append(_text(bx + 12, 126, num, size=27, weight="bold", fill=color))
+        parts.append(_text(bx + 12, 143, label, size=11.5, fill=MUTED))
+
+    # --- treemap ------------------------------------------------------------
+    cx, cy = PAD, TOP
+    cw, ch = W - PAD * 2, H - TOP - BOTTOM
+    parts.append(f'<rect x="{cx}" y="{cy}" width="{cw}" height="{ch}" '
+                 f'fill="{PANEL}" stroke="{GRID}"/>')
+
+    for cell in squarify(_grouped(payload), cx, cy, cw, ch):
+        gx, gy = cell["x"] + GAP, cell["y"] + GAP
+        gw, gh = max(0, cell["w"] - GAP * 2), max(0, cell["h"] - GAP * 2)
+        head = min(HEADER, gh)
+
+        for tile in squarify(cell["node"]["items"], gx, gy + head, gw, max(0, gh - head)):
+            rec = tile["node"]
+            on = lit(rec)
+            fill = TIER_COLOR[rec["tier"]] if on else DIM
+            parts.append(f'<rect x="{tile["x"]:.1f}" y="{tile["y"]:.1f}" '
+                         f'width="{max(0, tile["w"] - 1):.1f}" '
+                         f'height="{max(0, tile["h"] - 1):.1f}" fill="{fill}"/>')
+            if rec["tier"] == "gasoline_direct" and mode != "diesel":
+                parts.append(f'<rect x="{tile["x"] + 0.8:.1f}" y="{tile["y"] + 0.8:.1f}" '
+                             f'width="{max(0, tile["w"] - 2.6):.1f}" '
+                             f'height="{max(0, tile["h"] - 2.6):.1f}" fill="none" '
+                             f'stroke="{INK}" stroke-width="1.6"/>')
+            if not on or tile["w"] < 38 or tile["h"] < 20:
+                continue
+            color = PARCH if rec["tier"] in LIGHT_TYPE else INK
+            avail_w, avail_h = tile["w"] - 10, tile["h"] - 8
+            lines = size = None
+            for candidate in (13, 12, 11, 10, 9, 8):
+                room = int(avail_h // (candidate + 2))
+                if room < 1:
+                    continue
+                lines = _wrap(rec["display_name"], candidate,
+                              avail_w, min(3, room))
+                if lines:
+                    size = candidate
+                    break
+            if not lines:
+                continue
+            y = tile["y"] + size + 3
+            for line in lines:
+                parts.append(_text(tile["x"] + 5, y, line, size=size, fill=color))
+                y += size + 2
+            # The share only earns its place when the label already fits.
+            if y + size <= tile["y"] + tile["h"] - 2:
+                parts.append(_text(tile["x"] + 5, y, f'{rec["weight"]:.2f}%',
+                                   size=size - 1, fill=color, opacity=0.75))
+
+        if head >= 13:
+            label = cell["node"]["name"]
+            size = 13 if _fits(label, 13, gw - 56) else 11
+            # A narrow group must not bleed into its neighbor.
+            if not _fits(label, size, gw - 4):
+                while len(label) > 1 and not _fits(label + "\u2026", size, gw - 4):
+                    label = label[:-1]
+                label += "\u2026"
+            parts.append(_text(gx + 1, gy + head - 7, label, size=size, weight="bold"))
+            share = f'{cell["node"]["weight"]:.1f}%'
+            if _tw(label, size) + _tw(share, 11) + 14 <= gw:
+                parts.append(_text(gx + gw - 1, gy + head - 7, share, size=11,
+                                   fill=MUTED, anchor="end"))
+            parts.append(f'<line x1="{gx:.1f}" y1="{gy + head - 2:.1f}" '
+                         f'x2="{gx + gw:.1f}" y2="{gy + head - 2:.1f}" '
+                         f'stroke="{GRID}"/>')
+
+    # --- legend -------------------------------------------------------------
+    ly = H - BOTTOM + 24
+    tiers = {t["key"]: t for t in payload["tiers"]}
+    col_w = (W - PAD * 2) / 3
+    for i, key in enumerate(LEGEND_ORDER):
+        lx = PAD + (i % 3) * col_w
+        yy = ly + (i // 3) * 21
+        weight = summary["by_tier"].get(key, {}).get("weight", 0.0)
+        parts.append(f'<rect x="{lx:.1f}" y="{yy - 10:.1f}" width="13" height="13" '
+                     f'fill="{TIER_COLOR[key]}" stroke="{GRID}" rx="2"/>')
+        parts.append(_text(lx + 19, yy, tiers[key]["label"], size=12.5, weight="bold"))
+        parts.append(_text(lx + col_w - 34, yy, f"{weight:.2f}%", size=12.5,
+                           fill=MUTED, anchor="end"))
+
+    parts.append(_text(
+        PAD, H - 22,
+        f'Diesel reaches {summary["exposed_share"]}% of the index as an input cost; '
+        f'weighting by estimated diesel content puts the embedded cost near '
+        f'{summary["embedded_diesel"]}%. Breadth, not magnitude.',
+        size=12, fill=MUTED))
+    parts.append(_text(
+        W - PAD, H - 22,
+        f'Weights: {config.SOURCE_PUBLISHER}, relative importance, December {config.RI_YEAR}. '
+        f'Exposure tiers are editorial.',
+        size=12, fill=MUTED, anchor="end"))
+
+    parts.append("</svg>")
+
+    config.DIST_DIR.mkdir(parents=True, exist_ok=True)
+    out = config.DIST_DIR / f"cpi_diesel_treemap_{mode}.svg"
+    out.write_text("\n".join(parts))
+    return out
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--mode", default="all",
+                        choices=["all", "gasoline", "diesel"])
+    parser.add_argument("--all-modes", action="store_true")
+    args = parser.parse_args()
+    modes = ["all", "gasoline", "diesel"] if args.all_modes else [args.mode]
+    for mode in modes:
+        path = render(mode)
+        print(f"wrote {path.relative_to(config.ROOT)} "
+              f"({path.stat().st_size / 1e3:.0f} KB)")
+    return 0
+
+
+if __name__ == "__main__":  # pragma: no cover
+    raise SystemExit(main())
