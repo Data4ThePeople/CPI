@@ -3,9 +3,15 @@
 > **Done.** `posts/cpi-diesel-billboard.jpg` is the chosen image, generated
 > from roughly prompt A. Every character of `44.4%` and `DATA4THEPEOPLE.COM`
 > was proofed at full zoom before use. The uncropped original is kept as
-> `cpi-diesel-billboard-source.jpg`; the hero is cropped from 1.79:1 to
-> 1.905:1 and downscaled to 2400x1260. The prompts below are kept for
-> regenerating or for a follow-up post.
+> `cpi-diesel-billboard-source.jpg`. Two crops come off it, because hero and
+> social are different shapes:
+>
+> | File | Size | Used as |
+> |---|---|---|
+> | `cpi-diesel-billboard.jpg` | 2400x1260 (1.905:1) | `hero` |
+> | `cpi-diesel-billboard-1680x1080.jpg` | 1680x1080 (1.556:1) | `meta_image` |
+>
+> The prompts below are kept for regenerating or for a follow-up post.
 
 Concept: the view through a windshield while driving, and a roadside billboard
 that reads **"Diesel prices impact 44.4% of your expenses."**
@@ -106,14 +112,21 @@ character of both the number and the domain before you use one.
 
 ## Sizes
 
-- `hero` and `meta_image`: **1200×630**. `--ar 16:9` is close; crop to 1.91:1.
-- Generate at **2400×1260** if the hero runs full-bleed, so it stays sharp on
-  retina.
+- `hero`: **1200×630** (1.905:1), generated at **2400×1260** so it stays sharp
+  on retina and in listings.
+- `meta_image`: **1680×1080** (1.556:1), the house social size from the
+  prismic-publisher docs.
 
-The billboard would take over `hero` from `posts/cpi-diesel-card.png`. Keep the
-card on `meta_image` regardless — link previews render smallest of anything,
-and the card is built to survive that while a photograph of distant text will
-not.
+They are different shapes, so a single file cannot serve both without one of
+them being letterboxed or centre-cropped by whatever renders it. Cut both from
+the same source.
+
+Generate at `--ar 16:9` or wider and crop down — a source narrower than 1.905:1
+cannot make the hero without losing height off the subject.
+
+Compose with the billboard well inside the frame. The social crop is 20% tighter
+than the hero, so anything close to the right edge survives one and not the
+other.
 
 ---
 

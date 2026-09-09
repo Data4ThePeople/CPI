@@ -7,7 +7,7 @@ description: Diesel is an input cost inside 44.4% of the Consumer Price Index, a
 keywords: diesel prices, CPI, inflation, freight costs, trucking, supply chain, consumer price index, relative importance
 hero: posts/cpi-diesel-billboard.jpg
 hero_alt: The view through a windshield on an interstate, passing a yellow roadside billboard reading "Diesel prices impact 44.4% of your expenses — data4thepeople.com".
-meta_image: posts/cpi-diesel-billboard.jpg
+meta_image: posts/cpi-diesel-billboard-1680x1080.jpg
 meta_image_alt: A roadside billboard seen from a moving car reading "Diesel prices impact 44.4% of your expenses".
 ---
 
