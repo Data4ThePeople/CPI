@@ -8,3 +8,7 @@ dist/*
 !dist/index.html
 .env
 .DS_Store
+
+# Converted output and the asset-id cache are build artifacts.
+posts/*.prismic.json
+posts/.prismic-assets.json
