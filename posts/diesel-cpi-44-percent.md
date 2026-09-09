@@ -72,8 +72,6 @@ So the next time you drive past that sign, look at the glowing green numbers at 
 
 You'll know what it means now.
 
-• • •
-
 ::: blurb How we got to 44.4%
 - The weights are the Bureau of Labor Statistics' published relative importances for December 2025. Those are not our numbers.
 - Which categories count as diesel-exposed **is** our judgment — a documented call about freight intensity, not a measured cost share. Every one of the 81 categories has its reasoning written out, and you can argue with them one at a time.
