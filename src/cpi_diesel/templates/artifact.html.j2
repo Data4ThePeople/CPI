@@ -1,0 +1,9 @@
+{# Artifact variant: the host supplies <!doctype>, <html>, <head> and <body>,
+   so this emits page content only. <title> stays first so it lands inside the
+   8KB the publisher scans. #}
+<title>{{ title }}</title>
+<style>{{ css }}</style>
+{# This host frames the page but supplies its own document chrome, so the
+   full standalone layout is the right one here, not the compact embed. #}
+<script>window.CPI_STANDALONE=true;</script>
+{% include "_body.html.j2" %}

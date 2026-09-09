@@ -1,0 +1,239 @@
+/* Editorial parchment house style, carried over from
+   CPS_monthly_explorer/analysis/make_charts.py.
+
+   Palette note: the brand's teal (#0a3d33) and coral (#712B13) separate by
+   only dE 4.8 under protanopia, so they must never encode meaning against
+   each other. Here the diesel tiers run on a cool slate-blue ramp and
+   gasoline sits alone on the warm coral. Cool-vs-warm survives every CVD
+   simulation, and the ramp itself is ordered by luminance so it still reads
+   as a sequence in greyscale.
+
+   This design commits to the light parchment look rather than following the
+   viewer's theme, so every color is painted explicitly. */
+
+:root {
+  --parch:  #faf3df;
+  --panel:  #f4ead2;
+  --ink:    #2b2317;
+  --muted:  #6b5d3f;
+  --grid:   #cdbb96;
+
+  --t-light:   #cfe0e8;
+  --t-service: #a8c6d4;
+  --t-heavy:   #7aa7bd;
+  --t-cold:    #4d84a3;
+  --t-diesel:  #2e6485;
+  --t-direct:  #17455f;
+
+  --t-gas:     #712b13;
+  --t-other:   #b9a06a;
+  --t-none:    #e2dac4;
+  --dim:       #ece4cd;
+
+  --serif: Georgia, "Times New Roman", "DejaVu Serif", serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--parch);
+  color: var(--ink);
+  font-family: var(--serif);
+  line-height: 1.5;
+}
+
+.wrap {
+  max-width: 1180px; margin: 0 auto; padding: 32px 24px 64px;
+  /* Queried instead of the viewport: inside the Prismic oEmbed the
+     viewport does not describe the space the page is actually given. */
+  container-type: inline-size;
+}
+
+header.masthead { border-bottom: 2px solid var(--grid); padding-bottom: 18px; }
+.logo { height: 30px; width: auto; margin-bottom: 14px; display: block; }
+h1 { font-size: 30px; line-height: 1.2; margin: 0 0 8px; font-weight: 700; }
+.standfirst { font-size: 17px; color: var(--muted); margin: 0; max-width: 68ch; }
+
+/* --- scoreboard --------------------------------------------------------- */
+.scoreboard {
+  display: grid; gap: 14px; margin: 24px 0 8px;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+}
+.stat {
+  background: var(--panel); border: 1px solid var(--grid);
+  border-radius: 3px; padding: 14px 16px;
+}
+.stat .num { font-size: 30px; font-weight: 700; line-height: 1.1; }
+.stat .num.gas { color: var(--t-gas); }
+.stat .num.diesel { color: var(--t-direct); }
+.stat .lab { font-size: 13px; color: var(--muted); margin-top: 6px; }
+.lab-terse { display: none; }
+
+/* --- controls ----------------------------------------------------------- */
+.controls { display: flex; flex-wrap: wrap; gap: 8px; margin: 26px 0 14px; }
+.controls button {
+  font-family: var(--serif); font-size: 14px; cursor: pointer;
+  padding: 9px 15px; border-radius: 3px;
+  border: 1px solid var(--grid); background: var(--panel); color: var(--muted);
+}
+.controls button:hover { border-color: var(--muted); color: var(--ink); }
+.controls button[aria-pressed="true"] {
+  background: var(--ink); border-color: var(--ink); color: var(--parch);
+}
+.controls button:focus-visible { outline: 2px solid var(--t-diesel); outline-offset: 2px; }
+
+.readout {
+  font-size: 15px; color: var(--ink); margin: 0 0 14px;
+  min-height: 3em; max-width: 78ch;
+}
+.readout b { font-weight: 700; }
+
+/* --- chart -------------------------------------------------------------- */
+.chartbox { position: relative; }
+canvas { display: block; width: 100%; height: auto; border: 1px solid var(--grid); background: var(--panel); }
+
+.tip {
+  position: absolute; pointer-events: none; z-index: 5;
+  max-width: 330px; padding: 11px 13px;
+  background: var(--ink); color: var(--parch);
+  border-radius: 4px; font-size: 13.5px; line-height: 1.45;
+  box-shadow: 0 6px 20px rgba(43,35,23,.3);
+  opacity: 0; transition: opacity .1s;
+}
+.tip.on { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .tip { transition: none; }
+}
+.tip .tname { font-weight: 700; font-size: 14.5px; display: block; }
+.tip .tmeta { color: var(--grid); font-size: 12.5px; display: block; margin: 3px 0 7px; }
+
+/* --- legend ------------------------------------------------------------- */
+.legend {
+  display: grid; gap: 8px 20px; margin: 20px 0 0;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  font-size: 13.5px;
+}
+.legend .row { display: flex; align-items: baseline; gap: 9px; }
+.legend .sw {
+  width: 15px; height: 15px; flex: 0 0 15px; border-radius: 2px;
+  border: 1px solid rgba(43,35,23,.25); transform: translateY(2px);
+}
+.legend .lname { font-weight: 700; }
+.legend .lwt { color: var(--muted); }
+
+/* Standalone, the notes below already carry the source; the stamp is only
+   needed once the embedded layout hides them. */
+.source { display: none; }
+.source a { color: var(--t-diesel); }
+
+/* --- notes -------------------------------------------------------------- */
+.notes {
+  margin-top: 30px; padding-top: 18px; border-top: 1px solid var(--grid);
+  font-size: 13.5px; color: var(--muted); max-width: 80ch;
+}
+.notes p { margin: 0 0 10px; }
+.notes a { color: var(--t-diesel); }
+.notes strong { color: var(--ink); }
+
+@media (max-width: 640px) {
+  .wrap { padding: 20px 14px 44px; }
+  h1 { font-size: 24px; }
+  .stat .num { font-size: 25px; }
+}
+
+
+/* --- embedded in an iframe -------------------------------------------------
+   Prismic renders this as an html_embed slice: full width, and a FIXED pixel
+   height from the slice's embed_height field (the house default is 780px).
+   Nothing can scroll, so the page becomes a flex column that fills exactly
+   that height and hands every spare pixel to the chart.
+
+   The masthead and the notes go: the article around the frame already carries
+   the headline and the caveats, and inside a fixed height they are the two
+   most expensive things on the page. */
+
+html.embed, html.embed body { height: 100%; overflow: hidden; }
+
+html.embed .wrap {
+  max-width: none;
+  height: 100%;
+  padding: 10px 12px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+html.embed header.masthead,
+html.embed .notes { display: none; }
+
+/* Every fixed-height row states its own size; only the chart flexes. */
+html.embed .scoreboard { margin: 0; gap: 8px; flex: 0 0 auto; }
+html.embed .stat { padding: 7px 10px; }
+html.embed .stat .num { font-size: 21px; }
+html.embed .stat .lab { font-size: 10.5px; margin-top: 2px; line-height: 1.35; }
+/* Terse labels are what let all four tiles share one row down to ~620px; the
+   full sentences would orphan the fourth onto a row of its own. */
+html.embed .lab-full { display: none; }
+html.embed .lab-terse { display: inline; }
+html.embed .scoreboard { grid-template-columns: repeat(4, 1fr); }
+
+html.embed .controls { margin: 0; gap: 6px; flex: 0 0 auto; }
+html.embed .controls button { padding: 6px 11px; font-size: 12.5px; }
+
+html.embed .readout {
+  margin: 0; font-size: 12.5px; line-height: 1.4;
+  min-height: 0; max-width: none; flex: 0 0 auto;
+}
+
+/* min-height:0 is what lets a flex child actually shrink below its content. */
+html.embed .chartbox { flex: 1 1 auto; min-height: 0; }
+html.embed canvas { height: 100%; }
+
+html.embed .legend {
+  margin: 0; gap: 3px 16px; font-size: 11.5px; flex: 0 0 auto;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+}
+/* The blurb under each legend key is the first thing to go: it is explanation,
+   and the article supplies that. The key and its share still read. */
+html.embed .legend .row br,
+html.embed .legend .row .blurb { display: none; }
+html.embed .legend .sw { width: 12px; height: 12px; flex-basis: 12px; }
+
+html.embed .source {
+  display: block; flex: 0 0 auto; font-size: 11px; color: var(--muted);
+  margin: 0;
+}
+
+/* A narrow frame -- a phone at full column width -- keeps the chart and drops
+   the chrome to two compact rows rather than stacking eight of them. */
+@container (max-width: 620px) {
+  .scoreboard { grid-template-columns: repeat(2, 1fr); }
+  .legend { grid-template-columns: 1fr; }
+}
+/* A phone at full column width still gets a fixed 780px, so the chrome has to
+   give the chart its share back: the legend goes two-up and loses its suffix,
+   the buttons carry short labels, and the stat tiles tighten. Without this the
+   chrome took 530 of the 780 and left the treemap unreadable. */
+@container (max-width: 620px) {
+  html.embed .wrap { padding: 8px 9px 6px; gap: 6px; }
+  html.embed .scoreboard { grid-template-columns: repeat(2, 1fr); }
+  html.embed .stat { padding: 5px 8px; }
+  html.embed .stat .num { font-size: 16px; }
+  html.embed .stat .lab { font-size: 9px; line-height: 1.3; }
+  html.embed .controls button { padding: 5px 10px; font-size: 12px; }
+  html.embed .readout { font-size: 11px; }
+  html.embed .legend {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px 10px; font-size: 10px;
+  }
+  html.embed .legend .lsuffix { display: none; }
+  html.embed .legend .sw { width: 10px; height: 10px; flex-basis: 10px; }
+  html.embed .source { font-size: 9.5px; }
+}
+
+/* Fallback for engines without container queries. */
+@media (max-width: 620px) {
+  .scoreboard { grid-template-columns: repeat(2, 1fr); }
+}

@@ -1,0 +1,99 @@
+<div class="wrap">
+  <header class="masthead">
+    {% if logo %}<img class="logo" src="{{ logo }}" alt="">{% endif %}
+    <h1>Gasoline gets the attention. Diesel gets everything else.</h1>
+    <p class="standfirst">
+      Every mutually exclusive category in the Consumer Price Index, sized by
+      its published relative importance and colored by how diesel reaches it.
+      Hover any box to read the mechanism.
+    </p>
+  </header>
+
+  <div class="scoreboard">
+    <div class="stat">
+      <div class="num gas">{{ s.gasoline_direct }}%</div>
+      <div class="lab"><span class="lab-full">Gasoline, bought directly. One
+        line item, and essentially gasoline's whole role in the
+        index.</span><span class="lab-terse">Gasoline, bought
+        directly</span></div>
+    </div>
+    <div class="stat">
+      <div class="num diesel">{{ s.diesel_direct }}%</div>
+      <div class="lab"><span class="lab-full">Diesel, bought directly —
+        {{ s.gasoline_over_diesel_direct }}× smaller than gasoline. This is the
+        number that gets diesel ignored.</span><span class="lab-terse">Diesel,
+        bought directly — {{ s.gasoline_over_diesel_direct }}× smaller</span></div>
+    </div>
+    <div class="stat">
+      <div class="num diesel">{{ s.exposed_share }}%</div>
+      <div class="lab"><span class="lab-full">Of the index sits in a category
+        diesel reaches as an input cost — {{ s.reach_ratio }}× gasoline's direct
+        weight.</span><span class="lab-terse">Of the index diesel reaches —
+        {{ s.reach_ratio }}× gasoline</span></div>
+    </div>
+    <div class="stat">
+      <div class="num diesel">{{ s.embedded_diesel }}%</div>
+      <div class="lab"><span class="lab-full">Estimated embedded diesel cost —
+        {{ s.embedded_vs_gasoline }}× gasoline's entire direct weight, spread
+        across {{ s.exposed_count }} categories.</span><span class="lab-terse">Embedded
+        diesel cost — {{ s.embedded_vs_gasoline }}× gasoline</span></div>
+    </div>
+  </div>
+
+  <div class="controls" id="controls"></div>
+  <p class="readout" id="readout" aria-live="polite"></p>
+
+  <div class="chartbox" id="chartbox">
+    <canvas id="tm" role="img"
+      aria-label="Treemap of {{ s.categories }} CPI expenditure categories sized by
+      relative importance and colored by diesel exposure. Diesel-exposed
+      categories total {{ s.exposed_share }} percent of the index; gasoline bought
+      directly is {{ s.gasoline_direct }} percent."></canvas>
+    <div class="tip" id="tip"></div>
+  </div>
+
+  <div class="legend" id="legend"></div>
+
+  {# The one credit line that survives the embedded layout, where .notes is
+     hidden. Standalone it would only repeat the source paragraph below. #}
+  <p class="source">
+    Weights: {{ source_publisher }}, relative importance, December {{ ri_year }}.
+    Exposure tiers are editorial.
+    <a href="{{ publisher_url }}">{{ publisher_name }}</a>
+  </p>
+
+  <div class="notes">
+    <p><strong>What this does and does not say.</strong> "Diesel reaches
+      {{ s.exposed_share }}% of the index" means diesel is an input cost somewhere
+      inside categories making up {{ s.exposed_share }}% of the basket. It does
+      <em>not</em> mean diesel drives {{ s.exposed_share }}% of inflation. Weighting
+      each category by a rough estimate of how much of its delivered cost is
+      actually diesel gives an embedded diesel cost of about
+      <strong>{{ s.embedded_diesel }}% of the index</strong> — roughly
+      {{ s.embedded_vs_gasoline }}× gasoline's entire direct weight, but spread
+      across {{ s.exposed_count }} categories instead of sitting in one box. Breadth
+      is the claim here; that second number keeps it from being read as
+      magnitude.</p>
+    <p><strong>Method.</strong> Weights are the published relative importances
+      from {{ source_publisher }}, taken at a single depth of the item tree so the
+      {{ s.categories }} categories are mutually exclusive and sum to 100% — no
+      category contains another. Motor fuel and household energy are split one
+      level further so gasoline, diesel and heating oil are visible separately.
+      Two rows in the published table carry the wrong indent level and are
+      corrected before the tree is built; without that, the cut sums to 101.7%
+      rather than 100%.</p>
+    <p><strong>The tiers are editorial.</strong> The weights are BLS's. The
+      exposure tiers and the narrative on each box are ours — a judgment about
+      freight intensity, not a measured cost share, and not a BLS aggregate.
+      Every assignment is listed with its reasoning in the project's
+      <code>exposure_tiers.py</code> so it can be argued with one category at a
+      time. Air travel is fuel-exposed but to jet fuel, and electricity and
+      piped gas to their own fuels; both are deliberately excluded from the
+      diesel total.</p>
+    <p>Source: <a href="{{ source_url }}">{{ source_title }}</a>,
+      {{ source_publisher }}.{{ export_note }}</p>
+  </div>
+</div>
+
+<script>window.PAYLOAD={{ payload }};</script>
+<script>{{ js }}</script>
