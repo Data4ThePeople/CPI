@@ -12,6 +12,7 @@
 # exist.
 exclude:
   - README.md
+  - posts
   - src
   - tests
   - data
