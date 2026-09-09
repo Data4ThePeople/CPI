@@ -5,9 +5,9 @@ slug: diesel-cpi-44-percent
 date: 2026-09-09
 description: How diesel prices affect the economy: diesel is an input cost inside 44.4% of the Consumer Price Index, against gasoline's 2.9%. Free interactive chart.
 keywords: diesel impact on economy, how diesel prices affect the economy, diesel prices and inflation, diesel vs gasoline prices, diesel economy impact, why diesel prices matter, freight costs and inflation, trucking costs inflation, diesel prices, CPI, consumer price index, relative importance, free data visualization, interactive chart
-hero: posts/cpi-diesel-billboard.jpg
+hero: cpi-diesel-billboard.jpg
 hero_alt: The view through a windshield on an interstate, passing a yellow roadside billboard reading "Diesel prices impact 44.4% of your expenses — data4thepeople.com".
-meta_image: posts/cpi-diesel-billboard-1680x1080.jpg
+meta_image: cpi-diesel-billboard-1680x1080.jpg
 meta_image_alt: A roadside billboard seen from a moving car reading "Diesel prices impact 44.4% of your expenses".
 ---
 
