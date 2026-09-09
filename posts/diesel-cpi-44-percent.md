@@ -81,6 +81,8 @@ You'll know what it means now.
 - We were deliberately conservative. Airline fares burn jet fuel, and electricity burns gas and coal, so neither is counted in the 44.4% — even the coal-by-rail example above sits outside the number.
 :::
 
+## Common questions
+
 ### Does diesel really affect 44.4% of inflation?
 
 It reaches categories worth 44.4% of the Consumer Price Index as an input cost, which is not the same as causing 44.4% of inflation. Diesel is one cost among many inside a loaf of bread or a hospital stay. The point of the figure is breadth: gasoline is a single 2.9% line item that households buy directly, while diesel is embedded in nearly half the basket without ever appearing as something anyone purchases.
