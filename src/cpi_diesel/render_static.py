@@ -14,7 +14,7 @@ from pathlib import Path
 from typing import Dict, List
 from xml.sax.saxutils import escape
 
-from . import config
+from . import config, fuel_prices
 from .transform import MAJOR_ORDER, build_payload
 
 W, H = 1600, 1000
@@ -115,6 +115,21 @@ def _tw(s: str, size: float) -> float:
     """Approximate rendered width. Georgia averages ~0.50 em across mixed case;
     0.54 is a deliberate overestimate so labels never overflow their tile."""
     return len(s) * size * 0.54
+
+
+def _tw_digits(s: str, size: float) -> float:
+    """Width of a price string.
+
+    Georgia's bold numerals are old-style and wide; 0.62 em per figure and per
+    dollar sign, 0.28 for the dot, calibrated against a rendered $5.96 rather
+    than guessed. Underestimating here runs the following label into the price.
+    """
+    return sum(0.28 if c == "." else 0.62 for c in s) * size
+
+
+def _tw_caps(s: str, size: float) -> float:
+    """Width of an all-caps string. Georgia's capitals run ~0.72 em."""
+    return len(s) * size * 0.72
 
 
 def _fits(s: str, size: float, width: float) -> bool:
@@ -344,6 +359,125 @@ def render_card() -> Path:
     return out
 
 
+# The type-scaled sign. Letter size carries the ratio between the two figures,
+# so the graphic states the finding before anyone reads a number.
+#
+# Colors are the pump convention -- red gasoline, green diesel -- pushed off
+# pure red/green, which is the exact axis red-green colorblindness runs along.
+# The red goes warm and the green goes teal so the pair still separates under
+# protanopia. Size is doing the work regardless; this is belt and braces.
+SIGN_W, SIGN_H = 1200, 630
+SIGN_BG = "#0d0f10"
+SIGN_RED = "#f04a22"
+SIGN_GREEN = "#12b981"
+SIGN_DIM = "#8b8f92"
+
+
+def render_sign(scale: str = "linear") -> Path:
+    """A price sign where the diesel price is set ~15x the gasoline price.
+
+    The claim is about attention, not about the prices: diesel touches 44.4%
+    of the basket against gasoline's 2.9%, so the diesel number is roughly 15
+    times more worth watching. The digits are sized to that ratio and the
+    header says so, because 15x is emphatically *not* the ratio between the
+    two prices.
+
+    scale="linear" sets digit height to the ratio (~15x). scale="area" uses
+    its square root (~4x), so digit *area* carries it, which is how eyes judge
+    type and the same reason bubble charts size by area rather than radius.
+    """
+    payload = build_payload()
+    summary = payload["summary"]
+    prices = fuel_prices.latest()
+
+    gas_pct = round(summary["gasoline_direct"], 1)
+    diesel_pct = summary["exposed_share"]
+    ratio = diesel_pct / gas_pct
+    factor = ratio if scale == "linear" else ratio ** 0.5
+
+    # Pump signs truncate rather than round -- $5.967 posts as 5.96 and 9/10.
+    def posted(name: str) -> str:
+        return f"${int(prices[name].dollars * 100) / 100:.2f}"
+
+    margin = 54
+    LABEL = 23.0
+
+    big = 300.0
+    while _tw_digits(posted("diesel"), big) > SIGN_W - margin * 2 and big > 40:
+        big -= 4
+    small = big / factor
+
+    parts = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{SIGN_W}" '
+        f'height="{SIGN_H}" viewBox="0 0 {SIGN_W} {SIGN_H}">',
+        '<defs><filter id="glow" x="-30%" y="-30%" width="160%" height="160%">'
+        '<feGaussianBlur stdDeviation="7" result="b"/>'
+        '<feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/>'
+        '</feMerge></filter></defs>',
+        f'<rect width="{SIGN_W}" height="{SIGN_H}" fill="{SIGN_BG}"/>',
+    ]
+    parts.append(_text(margin, 46,
+                       "EACH PRICE SIZED BY HOW MUCH OF YOUR SPENDING THAT "
+                       "FUEL TOUCHES",
+                       size=14, fill=SIGN_DIM, weight="bold"))
+
+    # --- gasoline: the number you look at ----------------------------------
+    y_gas = 128
+    parts.append(_text(margin, y_gas, "GASOLINE", size=LABEL, weight="bold",
+                       fill=SIGN_RED))
+    x = margin + _tw_caps("GASOLINE", LABEL) + 18
+    parts.append(_text(x, y_gas, posted("gasoline"), size=small, weight="bold",
+                       fill=SIGN_RED))
+    parts.append(_text(x + _tw_digits(posted("gasoline"), small) + 18, y_gas,
+                       f"touches {gas_pct}% of what you spend", size=LABEL - 4,
+                       fill="#9aa0a3"))
+
+    # --- diesel: the number you should be looking at -----------------------
+    y_label = 196
+    parts.append(_text(margin, y_label, "DIESEL", size=LABEL, weight="bold",
+                       fill=SIGN_GREEN))
+    parts.append(_text(margin + _tw_caps("DIESEL", LABEL) + 18, y_label,
+                       f"touches {diesel_pct}% of what you spend",
+                       size=LABEL - 4, fill="#f2ede0"))
+
+    y_price = y_label + big * 0.80
+    parts.append(f'<g filter="url(#glow)">')
+    parts.append(_text(margin, y_price, posted("diesel"), size=big,
+                       weight="bold", fill=SIGN_GREEN))
+    parts.append("</g>")
+    parts.append(_text(SIGN_W - margin, y_price - 8,
+                       f"{ratio:.0f}x", size=76, weight="bold",
+                       fill="#f2ede0", anchor="end"))
+    parts.append(_text(SIGN_W - margin, y_price + 26,
+                       "more of your spending", size=19, fill=SIGN_DIM,
+                       anchor="end"))
+
+    # --- footer ------------------------------------------------------------
+    parts.append(f'<line x1="{margin}" y1="{SIGN_H - 92}" '
+                 f'x2="{SIGN_W - margin}" y2="{SIGN_H - 92}" stroke="#2b2f31"/>')
+    parts.append(_text(margin, SIGN_H - 62,
+                       f"Diesel is bought directly by almost nobody — "
+                       f"{summary['diesel_direct']}% of the index. It reaches "
+                       f"the rest as freight, inside {summary['exposed_count']} "
+                       f"of the {summary['categories']} categories.",
+                       size=17, fill="#c9cccd"))
+    parts.append(_text(margin, SIGN_H - 38,
+                       f"Retail prices, week of {prices['diesel'].week}: U.S. "
+                       f"Energy Information Administration via FRED. Sizing is "
+                       f"share of the CPI each fuel reaches, not the price ratio.",
+                       size=14, fill=SIGN_DIM))
+    parts.append(_text(margin, SIGN_H - 16,
+                       f"{config.PUBLISHER_NAME}  ·  CPI weights: "
+                       f"{config.SOURCE_PUBLISHER}, December {config.RI_YEAR}",
+                       size=14, fill=SIGN_DIM))
+    parts.append("</svg>")
+
+    config.DIST_DIR.mkdir(parents=True, exist_ok=True)
+    out = config.DIST_DIR / f"cpi_diesel_sign_{scale}.svg"
+    out.write_text("\n".join(parts))
+    return out
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--mode", default="all",
@@ -351,7 +485,15 @@ def main() -> int:
     parser.add_argument("--all-modes", action="store_true")
     parser.add_argument("--card", action="store_true",
                         help="render the 1200x630 link-preview card instead")
+    parser.add_argument("--sign", choices=["linear", "area"], default=None,
+                        help="render the type-scaled sign; linear sets letter "
+                             "height to the ratio, area sets letter area")
     args = parser.parse_args()
+    if args.sign:
+        path = render_sign(args.sign)
+        print(f"wrote {path.relative_to(config.ROOT)} "
+              f"({path.stat().st_size / 1e3:.0f} KB)")
+        return 0
     if args.card:
         path = render_card()
         print(f"wrote {path.relative_to(config.ROOT)} "
