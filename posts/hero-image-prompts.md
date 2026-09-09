@@ -45,6 +45,52 @@ text and numbers, and this concept is almost entirely small text and numbers.
 > background, hard specular highlights on the chrome, deep shadow. High
 > contrast, product-photography lighting, cinematic. --ar 16:9
 
+## D — Scale the type to the number
+
+The sign itself carries the argument: DIESEL is set enormous, GASOLINE is set
+tiny, and the ratio between them *is* the finding. Pump colors do the rest —
+red for gasoline, green for diesel, the way the nozzles are colored.
+
+**Pick a ratio first.** 44.4 ÷ 2.9 = **15.3**, and there are two honest ways to
+draw that:
+
+| | Height ratio | What it means |
+|---|---|---|
+| **Linear** | **15.3×** | Letter height scales with the number. Maximum drama; GASOLINE ends up almost too small to read, which is arguably the point. |
+| **Area** | **3.9×** | Letter *area* scales with the number (√15.3). Reads as ~15× more ink on the sign, because that's how eyes judge type. |
+
+Linear is the bolder image. Area is the one that won't get you a "that chart
+exaggerates" reply — it's the same reason bubble charts size by area, not
+radius. My call: use **linear** here and let the caption say 15×, because this
+is an illustration making a point rather than a chart being read off.
+
+> Photorealistic night photograph of a roadside fuel price sign, shot
+> straight on. The board has two rows. The top row reads GASOLINE in small
+> glowing red LED letters — deliberately tiny, occupying a narrow strip at the
+> very top of the board. Below it, filling the entire rest of the sign edge to
+> edge, the word DIESEL in enormous glowing green LED letters roughly fifteen
+> times the height of the word above it, so large the letters are cropped by
+> the frame. Black background, the two colors of light bleeding onto wet
+> asphalt below. Hard specular highlights on the sign's aluminum frame, deep
+> shadow, high contrast, cinematic product lighting, 35mm, high detail.
+> --ar 16:9
+
+For the area-proportional version, swap "roughly fifteen times the height" for
+"roughly four times the height."
+
+**On red and green.** It's the correct pump convention, and it's also the exact
+axis red-green colorblindness runs along — around 8% of men will see those two
+as near-identical. It matters less here than it would in the chart, because the
+*size* is doing the work and the color is only decoration. If you want it to
+hold anyway, push the green toward a deep teal and the red toward a warmer
+orange-red; both stay readable as "diesel green" and "gasoline red" while
+separating properly under protanopia. This is the same constraint documented
+for the brand teal and coral in the house palette.
+
+Because this variant is pure typography, we can render it exactly rather than
+asking a model to hit a 15.3× ratio it cannot measure — same pipeline as the
+card, real type, exact proportions. Say the word.
+
 ---
 
 ## The text problem, and the fix
