@@ -4,3 +4,4 @@ __pycache__/
 data/raw/
 dist/
 .env
+.DS_Store
