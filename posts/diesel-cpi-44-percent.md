@@ -3,6 +3,9 @@ title: Gasoline gets all the attention. Diesel is the price that really matters.
 subtitle: Households purchase almost no diesel directly — 0.086% of the Consumer Price Index. It still reaches 44.4% of it, fifteen times gasoline's direct weight.
 slug: diesel-cpi-44-percent
 date: 2026-09-09
+author: Eric Pachman
+author_url: https://www.data4thepeople.com/authors/eric-pachman
+section: Analysis
 description: How diesel prices affect the economy: diesel is an input cost inside 44.4% of the Consumer Price Index, against gasoline's 2.9%. Free interactive chart.
 keywords: diesel impact on economy, how diesel prices affect the economy, diesel prices and inflation, diesel vs gasoline prices, diesel economy impact, why diesel prices matter, freight costs and inflation, trucking costs inflation, diesel prices, CPI, consumer price index, relative importance, free data visualization, interactive chart
 hero: cpi-diesel-billboard.jpg
