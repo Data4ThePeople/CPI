@@ -1,5 +1,12 @@
 # Hero image prompts — the billboard
 
+> **Done.** `posts/cpi-diesel-billboard.jpg` is the chosen image, generated
+> from roughly prompt A. Every character of `44.4%` and `DATA4THEPEOPLE.COM`
+> was proofed at full zoom before use. The uncropped original is kept as
+> `cpi-diesel-billboard-source.jpg`; the hero is cropped from 1.79:1 to
+> 1.905:1 and downscaled to 2400x1260. The prompts below are kept for
+> regenerating or for a follow-up post.
+
 Concept: the view through a windshield while driving, and a roadside billboard
 that reads **"Diesel prices impact 44.4% of your expenses."**
 
