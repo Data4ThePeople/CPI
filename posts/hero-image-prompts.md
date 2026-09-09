@@ -24,9 +24,9 @@ problem" before generating.**
 > "DIESEL PRICES IMPACT 44.4% OF YOUR EXPENSES", and beneath it in smaller
 > bold black capitals across the bottom of the board, "DATA4THEPEOPLE.COM".
 > Slightly weathered vinyl, loud and unsubtle. Overcast flat daylight,
-> telephone poles and guardrail
-> rushing past with slight motion blur, the billboard itself sharp and in
-> focus. Shot on 35mm, natural windshield reflections, high detail. --ar 16:9
+> telephone poles and guardrail rushing past with slight motion blur, the
+> billboard itself sharp and in focus. Shot on 35mm, natural windshield
+> reflections, high detail. --ar 16:9
 
 ## B — Straight and cinematic
 
