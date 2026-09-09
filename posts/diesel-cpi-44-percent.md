@@ -5,10 +5,10 @@ slug: diesel-cpi-44-percent
 date: 2026-09-09
 description: Diesel is an input cost inside 44.4% of the Consumer Price Index, against gasoline's 2.9% — a map of every category it reaches.
 keywords: diesel prices, CPI, inflation, freight costs, trucking, supply chain, consumer price index, relative importance
-hero: posts/cpi-diesel-card.png
-hero_alt: Gasoline reaches 2.9% of the Consumer Price Index; diesel reaches 44.4%.
-meta_image: posts/cpi-diesel-card.png
-meta_image_alt: Gasoline reaches 2.9% of the Consumer Price Index; diesel reaches 44.4%.
+hero: posts/cpi-diesel-billboard.jpg
+hero_alt: The view through a windshield on an interstate, passing a yellow roadside billboard reading "Diesel prices impact 44.4% of your expenses — data4thepeople.com".
+meta_image: posts/cpi-diesel-billboard.jpg
+meta_image_alt: A roadside billboard seen from a moving car reading "Diesel prices impact 44.4% of your expenses".
 ---
 
 When you drive past a gas station and see diesel prices steadily churning toward $6 a gallon (the highest ever on record, by the way), what crosses your mind? Maybe: *not my problem — my car doesn't run on diesel.*
