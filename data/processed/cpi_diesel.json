@@ -212,8 +212,8 @@
       "tier": "direct_diesel",
       "tier_label": "Diesel, bought directly",
       "diesel_exposed": true,
-      "intensity": 0.9,
-      "embedded": 0.126,
+      "intensity": 0.6,
+      "embedded": 0.084,
       "narrative": "Home heating oil is essentially diesel. It comes off the same distillate cut of the barrel, competes for the same refinery output, and arrives at the house on a diesel tanker truck. When diesel moves, this moves with it almost one for one."
     },
     {
@@ -983,8 +983,8 @@
     "diesel_direct": 0.086,
     "gasoline_over_diesel_direct": 33.7,
     "reach_ratio": 15.3,
-    "embedded_diesel": 1.94,
-    "embedded_vs_gasoline": 0.67,
+    "embedded_diesel": 1.89,
+    "embedded_vs_gasoline": 0.65,
     "by_tier": {
       "cold_chain": {
         "weight": 8.325,
@@ -1024,7 +1024,7 @@
       "direct_diesel": {
         "weight": 0.226,
         "count": 2,
-        "embedded": 0.2077
+        "embedded": 0.1657
       },
       "gasoline_direct": {
         "weight": 2.895,
