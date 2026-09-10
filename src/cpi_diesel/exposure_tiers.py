@@ -168,8 +168,14 @@ EXPOSURE: Dict[str, Assignment] = {
         "Refrigerators, washers and ranges are the textbook definition of heavy "
         "freight: high weight, high volume, few units per trailer, and usually a "
         "second diesel leg for delivery and installation."),
+    # 0.60 is a blend, not a reading of heating oil alone. The BLS line is
+    # 0.140% of the index and splits 0.083 fuel oil / 0.057 propane, kerosene
+    # and firewood. Heating oil earns ~0.90 -- it is diesel in all but name --
+    # but propane is a natural-gas liquid and firewood is not a fuel cut at
+    # all, so for most of that second piece the only diesel is the delivery
+    # truck. Weighting 59% at 0.90 against 41% at ~0.20 lands near 0.60.
     "Fuel oil and other fuels": A(
-        "direct_diesel", 0.90,
+        "direct_diesel", 0.60,
         "Home heating oil is essentially diesel. It comes off the same "
         "distillate cut of the barrel, competes for the same refinery output, "
         "and arrives at the house on a diesel tanker truck. When diesel moves, "
