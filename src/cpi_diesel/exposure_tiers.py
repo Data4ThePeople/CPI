@@ -250,10 +250,15 @@ EXPOSURE: Dict[str, Assignment] = {
         "moving."),
     "Airline fares": A(
         "other_fuel", 0.0,
-        "Genuinely fuel-exposed, but to jet fuel rather than diesel. The two "
-        "come from the same middle-distillate cut and their prices move "
-        "together, but calling air travel diesel-exposed would be a stretch, so "
-        "it is broken out separately here."),
+        "Jet fuel is diesel's close cousin. Both are drawn from the same middle "
+        "distillate cut of the barrel, and they move together closely enough to "
+        "measure: month to month their prices track at 0.90, and still at 0.72 "
+        "once you strip out the crude oil that every fuel follows — against "
+        "0.21 for gasoline. Fuel is roughly a fifth of what it costs to run an "
+        "airline, so when the distillate market moves, fares follow it rather "
+        "than the pump price. It sits outside the total here only because the "
+        "number on this page is about diesel specifically; counting its cousin "
+        "would take it to 45.3%."),
     "Motor vehicle fees": A(
         "none", 0.0,
         "Registration, licensing and parking. Administrative and municipal "
