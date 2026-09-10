@@ -79,7 +79,7 @@ You'll know what it means now.
 - The weights are the Bureau of Labor Statistics' published relative importances for December 2025. Those are not our numbers.
 - Which categories count as diesel-exposed **is** our judgment — a documented call about freight intensity, not a measured cost share. Every one of the 81 categories has its reasoning written out, and you can argue with them one at a time.
 - **Reach is not magnitude.** 44.4% means diesel is an input cost somewhere inside categories worth 44.4% of the basket. It does not mean diesel drives 44.4% of inflation. Weight each category by roughly how much of its delivered cost is actually diesel and you get about 1.9% of the index — still two-thirds of gasoline's entire direct weight, but spread across 60 categories instead of sitting in one box.
-- We were deliberately conservative. Airline fares burn jet fuel, and electricity burns gas and coal, so neither is counted in the 44.4% — even the coal-by-rail example above sits outside the number.
+- **We were deliberately conservative, and we tested it.** Jet fuel is diesel's close cousin — the same middle distillate cut of the barrel — and the prices show it: month to month the two track at 0.90, and still at 0.72 once you strip out the crude oil that every fuel follows. Gasoline, by the same measure, comes in at 0.21. Airline fares are excluded anyway, because the number on this page is about diesel specifically; counting the cousin would take it to 45.3%. Electricity and piped gas stay out too — natural gas and coal are not distillates and do not move with diesel the way jet fuel does. Even the coal-by-rail example above sits outside the number.
 :::
 
 ## Common questions
