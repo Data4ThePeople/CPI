@@ -68,8 +68,6 @@ def build_records() -> List[Dict]:
             "tier": assignment.tier,
             "tier_label": tier.label,
             "diesel_exposed": tier.diesel,
-            "intensity": assignment.intensity,
-            "embedded": round(node.cpi_u * assignment.intensity, 4),
             "narrative": assignment.narrative,
         })
     records.sort(
@@ -82,7 +80,6 @@ def summarise(records: List[Dict]) -> Dict:
     """The headline statistics, all recomputed -- none hardcoded."""
     total = sum(r["weight"] for r in records)
     exposed = sum(r["weight"] for r in records if r["diesel_exposed"])
-    embedded = sum(r["embedded"] for r in records)
     by_name = {r["item_name"]: r for r in records}
 
     gasoline = by_name["Gasoline (all types)"]["weight"]
@@ -90,14 +87,11 @@ def summarise(records: List[Dict]) -> Dict:
 
     by_tier = {}
     for record in records:
-        slot = by_tier.setdefault(
-            record["tier"], {"weight": 0.0, "count": 0, "embedded": 0.0})
+        slot = by_tier.setdefault(record["tier"], {"weight": 0.0, "count": 0})
         slot["weight"] += record["weight"]
         slot["count"] += 1
-        slot["embedded"] += record["embedded"]
     for slot in by_tier.values():
         slot["weight"] = round(slot["weight"], 3)
-        slot["embedded"] = round(slot["embedded"], 4)
 
     return {
         "total": round(total, 3),
@@ -109,8 +103,6 @@ def summarise(records: List[Dict]) -> Dict:
         "diesel_direct": diesel_direct,
         "gasoline_over_diesel_direct": round(gasoline / diesel_direct, 1),
         "reach_ratio": round(exposed / gasoline, 1),
-        "embedded_diesel": round(embedded, 2),
-        "embedded_vs_gasoline": round(embedded / gasoline, 2),
         "by_tier": by_tier,
     }
 

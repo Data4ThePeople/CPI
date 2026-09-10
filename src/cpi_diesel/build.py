@@ -37,7 +37,7 @@ MIME = {
 
 CSV_FIELDS = [
     "major_group", "item_name", "display_name", "weight", "tier", "tier_label",
-    "diesel_exposed", "intensity", "embedded", "narrative",
+    "diesel_exposed", "narrative",
 ]
 
 
@@ -135,8 +135,6 @@ def main() -> int:
     print(f"  diesel reach          {summary['exposed_share']:>6}%  "
           f"({summary['exposed_count']} categories, "
           f"{summary['reach_ratio']}x gasoline)")
-    print(f"  embedded diesel cost  {summary['embedded_diesel']:>6}%  "
-          f"({summary['embedded_vs_gasoline']}x gasoline's direct weight)")
 
     write_data(payload)
     if args.data_only:

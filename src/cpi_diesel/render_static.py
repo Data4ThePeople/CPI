@@ -189,11 +189,8 @@ def render(mode: str = "all") -> Path:
         (f'{summary["exposed_share"]}%',
          f'Of the index diesel reaches — {summary["reach_ratio"]}× gasoline',
          TIER_COLOR["direct_diesel"]),
-        (f'{summary["embedded_diesel"]}%',
-         f'Embedded diesel cost — {summary["embedded_vs_gasoline"]}× gasoline',
-         TIER_COLOR["direct_diesel"]),
     ]
-    box_w = (W - PAD * 2 - 3 * 14) / 4
+    box_w = (W - PAD * 2 - 2 * 14) / 3
     for i, (num, label, color) in enumerate(stats):
         bx = PAD + i * (box_w + 14)
         parts.append(f'<rect x="{bx:.1f}" y="98" width="{box_w:.1f}" height="52" '
@@ -282,9 +279,8 @@ def render(mode: str = "all") -> Path:
 
     parts.append(_text(
         PAD, H - 22,
-        f'Diesel reaches {summary["exposed_share"]}% of the index as an input cost; '
-        f'weighting by estimated diesel content puts the embedded cost near '
-        f'{summary["embedded_diesel"]}%. Breadth, not magnitude.',
+        f'Diesel reaches {summary["exposed_share"]}% of the index as an input '
+        f'cost. That is breadth — where diesel reaches, not how hard it pushes.',
         size=12, fill=MUTED))
     parts.append(_text(
         W - PAD, H - 22,

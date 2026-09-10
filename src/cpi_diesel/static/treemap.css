@@ -179,7 +179,7 @@ html.embed .stat .lab { font-size: 10.5px; margin-top: 2px; line-height: 1.35; }
    full sentences would orphan the fourth onto a row of its own. */
 html.embed .lab-full { display: none; }
 html.embed .lab-terse { display: inline; }
-html.embed .scoreboard { grid-template-columns: repeat(4, 1fr); }
+html.embed .scoreboard { grid-template-columns: repeat(3, 1fr); }
 
 html.embed .controls { margin: 0; gap: 6px; flex: 0 0 auto; }
 html.embed .controls button { padding: 6px 11px; font-size: 12.5px; }
@@ -221,6 +221,9 @@ html.embed .source {
 @container (max-width: 620px) {
   html.embed .wrap { padding: 8px 9px 6px; gap: 6px; }
   html.embed .scoreboard { grid-template-columns: repeat(2, 1fr); }
+  /* Three tiles over two columns would leave the last one alone on its row,
+     so it spans instead. */
+  html.embed .scoreboard .stat:last-child { grid-column: 1 / -1; }
   html.embed .stat { padding: 5px 8px; }
   html.embed .stat .num { font-size: 16px; }
   html.embed .stat .lab { font-size: 9px; line-height: 1.3; }

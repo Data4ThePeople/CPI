@@ -31,13 +31,6 @@
         weight.</span><span class="lab-terse">Of the index diesel reaches —
         {{ s.reach_ratio }}× gasoline</span></div>
     </div>
-    <div class="stat">
-      <div class="num diesel">{{ s.embedded_diesel }}%</div>
-      <div class="lab"><span class="lab-full">Estimated embedded diesel cost —
-        {{ s.embedded_vs_gasoline }}× gasoline's entire direct weight, spread
-        across {{ s.exposed_count }} categories.</span><span class="lab-terse">Embedded
-        diesel cost — {{ s.embedded_vs_gasoline }}× gasoline</span></div>
-    </div>
   </div>
 
   <div class="controls" id="controls"></div>
@@ -74,14 +67,12 @@
     <p><strong>What this does and does not say.</strong> "Diesel reaches
       {{ s.exposed_share }}% of the index" means diesel is an input cost somewhere
       inside categories making up {{ s.exposed_share }}% of the basket. It does
-      <em>not</em> mean diesel drives {{ s.exposed_share }}% of inflation. Weighting
-      each category by a rough estimate of how much of its delivered cost is
-      actually diesel gives an embedded diesel cost of about
-      <strong>{{ s.embedded_diesel }}% of the index</strong> — roughly
-      {{ s.embedded_vs_gasoline }}× gasoline's entire direct weight, but spread
-      across {{ s.exposed_count }} categories instead of sitting in one box. Breadth
-      is the claim here; that second number keeps it from being read as
-      magnitude.</p>
+      <em>not</em> mean diesel drives {{ s.exposed_share }}% of inflation, and it is
+      not a claim that diesel's impact is bigger than gasoline's. This map shows
+      <em>where</em> diesel reaches, not how hard it pushes. How much a diesel move
+      actually moves any given price depends on freight's share of that item's
+      cost, on contracts, inventory and margins, and it varies enormously between
+      categories. That is a separate question, and not one this map answers.</p>
     <p><strong>Method.</strong> Weights are the published relative importances
       from {{ source_publisher }}, taken at a single depth of the item tree so the
       {{ s.categories }} categories are mutually exclusive and sum to 100% — no
