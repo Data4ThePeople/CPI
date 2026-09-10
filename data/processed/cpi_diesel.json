@@ -8,8 +8,6 @@
       "tier": "cold_chain",
       "tier_label": "Grocery freight",
       "diesel_exposed": true,
-      "intensity": 0.02,
-      "embedded": 0.1665,
       "narrative": "Nearly everything in a grocery store arrives on a diesel truck, most of it more than once a week. Produce, meat, dairy and dry goods all move farm to processor to distribution center to store, and every leg burns diesel. This is the clearest case in the whole basket: when diesel moves, grocery prices follow."
     },
     {
@@ -20,8 +18,6 @@
       "tier": "freight_dependent_service",
       "tier_label": "Service that runs on trucked inputs",
       "diesel_exposed": true,
-      "intensity": 0.009,
-      "embedded": 0.0484,
       "narrative": "Restaurant inputs arrive by truck. A typical kitchen takes deliveries of produce, meat, dry goods and beverages several times a week from diesel distribution fleets, and the menu price carries that freight even though the diner never sees a line item for it."
     },
     {
@@ -32,8 +28,6 @@
       "tier": "freight_dependent_service",
       "tier_label": "Service that runs on trucked inputs",
       "diesel_exposed": true,
-      "intensity": 0.006,
-      "embedded": 0.0027,
       "narrative": "Beer, wine and spirits reach bars and restaurants through a three-tier distribution system that is entirely truck-based. Liquid is heavy and cheap per pound, so freight is a bigger share of its delivered cost than most people would guess."
     },
     {
@@ -44,8 +38,6 @@
       "tier": "heavy_freight",
       "tier_label": "Heavy freight",
       "diesel_exposed": true,
-      "intensity": 0.014,
-      "embedded": 0.0056,
       "narrative": "Bottled and canned drinks are some of the densest freight in retail. Distributors run dedicated diesel routes to every store, and the weight-to-value ratio means a fuel move reaches the shelf price faster than it does for lighter goods."
     },
     {
@@ -56,8 +48,6 @@
       "tier": "none",
       "tier_label": "No meaningful diesel content",
       "diesel_exposed": false,
-      "intensity": 0.0,
-      "embedded": 0.0,
       "narrative": "The rent an owner would pay to rent their own home from themselves. Nothing is manufactured, nothing is delivered, no freight is consumed. At more than a quarter of the index on its own, this is the largest genuinely diesel-free category in the CPI -- and a big part of why the diesel-exposed share tops out where it does."
     },
     {
@@ -68,8 +58,6 @@
       "tier": "none",
       "tier_label": "No meaningful diesel content",
       "diesel_exposed": false,
-      "intensity": 0.0,
-      "embedded": 0.0,
       "narrative": "A monthly payment for space that already exists. Repairs carry a little embedded freight, but rent itself is a claim on land and structure, not on anything that has to be moved."
     },
     {
@@ -80,8 +68,6 @@
       "tier": "other_fuel",
       "tier_label": "Other fuel, not diesel",
       "diesel_exposed": false,
-      "intensity": 0.01,
-      "embedded": 0.0326,
       "narrative": "Electricity and piped natural gas, delivered by wire and pipeline rather than by truck. The fuel exposure is real but it runs to natural gas and coal, not diesel, so it is kept out of the diesel total on purpose."
     },
     {
@@ -92,8 +78,6 @@
       "tier": "freight_dependent_service",
       "tier_label": "Service that runs on trucked inputs",
       "diesel_exposed": true,
-      "intensity": 0.006,
-      "embedded": 0.0077,
       "narrative": "Hotels consume trucked goods continuously -- linens, food, cleaning supplies, amenities -- on a resupply cadence closer to a restaurant's than an office's."
     },
     {
@@ -104,8 +88,6 @@
       "tier": "diesel_service",
       "tier_label": "Delivered by a diesel vehicle",
       "diesel_exposed": true,
-      "intensity": 0.1,
-      "embedded": 0.1144,
       "narrative": "Refuse collection is one of the most diesel-intensive services a household buys. Garbage trucks are heavy, stop every few hundred feet, idle while they load, and post some of the worst fuel economy of any vehicle class on the road."
     },
     {
@@ -116,8 +98,6 @@
       "tier": "heavy_freight",
       "tier_label": "Heavy freight",
       "diesel_exposed": true,
-      "intensity": 0.017,
-      "embedded": 0.015,
       "narrative": "Bulky, heavy and awkward to pack, furniture is close to a worst case for freight economics: it fills a trailer by volume long before it fills it by weight, then often takes a second diesel leg for delivery into the house."
     },
     {
@@ -128,8 +108,6 @@
       "tier": "freight_dependent_service",
       "tier_label": "Service that runs on trucked inputs",
       "diesel_exposed": true,
-      "intensity": 0.006,
-      "embedded": 0.0053,
       "narrative": "Housekeeping, gardening, moving and storage. Moving is diesel from end to end, and the lawn and garden trades tow equipment to every job."
     },
     {
@@ -140,8 +118,6 @@
       "tier": "light_freight",
       "tier_label": "Light freight",
       "diesel_exposed": true,
-      "intensity": 0.009,
-      "embedded": 0.0076,
       "narrative": "Detergents, paper goods and cleaners are heavy and cheap per pound. Water and wood pulp travel a long way by truck before anyone buys them."
     },
     {
@@ -152,8 +128,6 @@
       "tier": "heavy_freight",
       "tier_label": "Heavy freight",
       "diesel_exposed": true,
-      "intensity": 0.014,
-      "embedded": 0.0097,
       "narrative": "Lumber, fasteners, paint, mowers and grills. Home-center inventory is dense, heavy and restocked constantly by dedicated fleets running out of regional distribution centers."
     },
     {
@@ -164,8 +138,6 @@
       "tier": "heavy_freight",
       "tier_label": "Heavy freight",
       "diesel_exposed": true,
-      "intensity": 0.011,
-      "embedded": 0.0062,
       "narrative": "Cookware, dishes, lamps and decor, trucked from port or plant to distribution center to store. Breakage risk keeps it on roads rather than cheaper modes."
     },
     {
@@ -176,8 +148,6 @@
       "tier": "none",
       "tier_label": "No meaningful diesel content",
       "diesel_exposed": false,
-      "intensity": 0.0,
-      "embedded": 0.0,
       "narrative": "A financial contract. Premiums move with claims experience and interest rates, not with the cost of moving anything."
     },
     {
@@ -188,8 +158,6 @@
       "tier": "light_freight",
       "tier_label": "Light freight",
       "diesel_exposed": true,
-      "intensity": 0.009,
-      "embedded": 0.0021,
       "narrative": "Textiles and floor coverings, mostly imported and then trucked inland from the port. Rolled carpet in particular is heavy, bulky freight."
     },
     {
@@ -200,8 +168,6 @@
       "tier": "heavy_freight",
       "tier_label": "Heavy freight",
       "diesel_exposed": true,
-      "intensity": 0.017,
-      "embedded": 0.0032,
       "narrative": "Refrigerators, washers and ranges are the textbook definition of heavy freight: high weight, high volume, few units per trailer, and usually a second diesel leg for delivery and installation."
     },
     {
@@ -212,8 +178,6 @@
       "tier": "direct_diesel",
       "tier_label": "Diesel, bought directly",
       "diesel_exposed": true,
-      "intensity": 0.6,
-      "embedded": 0.084,
       "narrative": "Home heating oil is essentially diesel. It comes off the same distillate cut of the barrel, competes for the same refinery output, and arrives at the house on a diesel tanker truck. When diesel moves, this moves with it almost one for one."
     },
     {
@@ -224,8 +188,6 @@
       "tier": "light_freight",
       "tier_label": "Light freight",
       "diesel_exposed": true,
-      "intensity": 0.006,
-      "embedded": 0.0047,
       "narrative": "Overwhelmingly imported, then trucked from port to distribution center to store or doorstep. Clothing is light for its value, so freight is a small share of the price -- but it is never zero, and e-commerce has added diesel legs to garments that used to make only one trip."
     },
     {
@@ -236,8 +198,6 @@
       "tier": "light_freight",
       "tier_label": "Light freight",
       "diesel_exposed": true,
-      "intensity": 0.006,
-      "embedded": 0.0028,
       "narrative": "The same import-and-truck path as the rest of apparel: container to port, a short diesel drayage move to a distribution center, then line-haul to wherever it is sold."
     },
     {
@@ -248,8 +208,6 @@
       "tier": "light_freight",
       "tier_label": "Light freight",
       "diesel_exposed": true,
-      "intensity": 0.006,
-      "embedded": 0.0016,
       "narrative": "Shoes ship in boxes that waste a lot of trailer space for their weight, which pushes freight cost per pair above what the materials alone would suggest."
     },
     {
@@ -260,8 +218,6 @@
       "tier": "light_freight",
       "tier_label": "Light freight",
       "diesel_exposed": true,
-      "intensity": 0.006,
-      "embedded": 0.0011,
       "narrative": "Boxed, bulky for its weight, and moved through the same port-to-distribution-center truck network as the rest of footwear."
     },
     {
@@ -272,8 +228,6 @@
       "tier": "light_freight",
       "tier_label": "Light freight",
       "diesel_exposed": true,
-      "intensity": 0.006,
-      "embedded": 0.0008,
       "narrative": "Imported and trucked inland. Small garments, small freight share, but the same road network underneath."
     },
     {
@@ -284,8 +238,6 @@
       "tier": "light_freight",
       "tier_label": "Light freight",
       "diesel_exposed": true,
-      "intensity": 0.001,
-      "embedded": 0.0001,
       "narrative": "Almost pure value with almost no weight. Jewelry tends to move by air and secure courier rather than freight truck, making it one of the least diesel-exposed physical goods in the basket."
     },
     {
@@ -296,8 +248,6 @@
       "tier": "light_freight",
       "tier_label": "Light freight",
       "diesel_exposed": true,
-      "intensity": 0.006,
-      "embedded": 0.0007,
       "narrative": "The same boxed, low-density freight profile as adult footwear, on the same truck routes \u2014 a lot of trailer space for very little weight."
     },
     {
@@ -308,8 +258,6 @@
       "tier": "light_freight",
       "tier_label": "Light freight",
       "diesel_exposed": true,
-      "intensity": 0.006,
-      "embedded": 0.0007,
       "narrative": "Imported, containerized, then trucked to store or doorstep. Small garments make the same three road moves as large ones."
     },
     {
@@ -320,8 +268,6 @@
       "tier": "light_freight",
       "tier_label": "Light freight",
       "diesel_exposed": true,
-      "intensity": 0.006,
-      "embedded": 0.0006,
       "narrative": "Light goods on the standard import-and-truck path; freight is a small but real slice of the price."
     },
     {
@@ -332,8 +278,6 @@
       "tier": "light_freight",
       "tier_label": "Light freight",
       "diesel_exposed": true,
-      "intensity": 0.001,
-      "embedded": 0.0,
       "narrative": "High value, negligible weight, and frequently air-freighted. Along with jewelry, this is about as close to diesel-free as a physical good in the basket gets."
     },
     {
@@ -344,8 +288,6 @@
       "tier": "heavy_freight",
       "tier_label": "Heavy freight",
       "diesel_exposed": true,
-      "intensity": 0.009,
-      "embedded": 0.0648,
       "narrative": "A finished car weighs two tons and travels by rail and specialised diesel car-hauler, usually both. Its parts made several diesel trips before assembly and it makes at least one more to the dealer lot. At 7.2% of the index this is the largest freight-exposed category outside food."
     },
     {
@@ -356,8 +298,6 @@
       "tier": "gasoline_direct",
       "tier_label": "Gasoline, bought directly",
       "diesel_exposed": false,
-      "intensity": 0.0,
-      "embedded": 0.0,
       "narrative": "The comparison anchor. This is gasoline households pump themselves, and it is essentially gasoline's entire role in the CPI: 2.895% of the index, the number that gets all the attention. Gasoline is a final good here, not an input cost hidden inside anything else in the basket."
     },
     {
@@ -368,8 +308,6 @@
       "tier": "none",
       "tier_label": "No meaningful diesel content",
       "diesel_exposed": false,
-      "intensity": 0.0,
-      "embedded": 0.0,
       "narrative": "A financial product. Premiums track crash frequency, repair costs and litigation. The repairs carry a little freight; the insurance itself burns nothing."
     },
     {
@@ -380,8 +318,6 @@
       "tier": "freight_dependent_service",
       "tier_label": "Service that runs on trucked inputs",
       "diesel_exposed": true,
-      "intensity": 0.006,
-      "embedded": 0.0062,
       "narrative": "Every part on a shop's shelf got there by truck, and the parts distribution network runs several deliveries a day to keep the bays moving."
     },
     {
@@ -392,8 +328,6 @@
       "tier": "other_fuel",
       "tier_label": "Other fuel, not diesel",
       "diesel_exposed": false,
-      "intensity": 0.0,
-      "embedded": 0.0,
       "narrative": "Jet fuel is diesel's close cousin. Both are drawn from the same middle distillate cut of the barrel, and they move together closely enough to measure: month to month their prices track at 0.90, and still at 0.72 once you strip out the crude oil that every fuel follows \u2014 against 0.21 for gasoline. Fuel is roughly a fifth of what it costs to run an airline, so when the distillate market moves, fares follow it rather than the pump price. It sits outside the total here only because the number on this page is about diesel specifically; counting its cousin would take it to 45.3%."
     },
     {
@@ -404,8 +338,6 @@
       "tier": "none",
       "tier_label": "No meaningful diesel content",
       "diesel_exposed": false,
-      "intensity": 0.0,
-      "embedded": 0.0,
       "narrative": "Registration, licensing and parking. Administrative and municipal charges set by policy, not by the cost of goods."
     },
     {
@@ -416,8 +348,6 @@
       "tier": "diesel_service",
       "tier_label": "Delivered by a diesel vehicle",
       "diesel_exposed": true,
-      "intensity": 0.15,
-      "embedded": 0.0532,
       "narrative": "City buses. Transit fleets remain substantially diesel and diesel-hybrid, and fuel is one of the largest controllable line items in an agency's operating budget."
     },
     {
@@ -428,8 +358,6 @@
       "tier": "heavy_freight",
       "tier_label": "Heavy freight",
       "diesel_exposed": true,
-      "intensity": 0.011,
-      "embedded": 0.0038,
       "narrative": "Tires dominate this category, and they are a freight planner's problem: heavy, bulky, and impossible to stack efficiently."
     },
     {
@@ -440,8 +368,6 @@
       "tier": "diesel_service",
       "tier_label": "Delivered by a diesel vehicle",
       "diesel_exposed": true,
-      "intensity": 0.15,
-      "embedded": 0.0366,
       "narrative": "Intercity buses, rail and ferries. Motorcoaches run on diesel, locomotives run on diesel-electric drives, and ferries burn marine distillate."
     },
     {
@@ -452,8 +378,6 @@
       "tier": "direct_diesel",
       "tier_label": "Diesel, bought directly",
       "diesel_exposed": true,
-      "intensity": 0.95,
-      "embedded": 0.0817,
       "narrative": "This is where consumer diesel actually sits in the CPI: 0.086% of the index, thirty-four times smaller than gasoline. That number is the whole reason diesel gets ignored -- and it counts only the diesel households pump themselves. It says nothing about the diesel burned to deliver everything else they buy."
     },
     {
@@ -464,8 +388,6 @@
       "tier": "diesel_service",
       "tier_label": "Delivered by a diesel vehicle",
       "diesel_exposed": true,
-      "intensity": 0.1,
-      "embedded": 0.0005,
       "narrative": "A residual line BLS carries so public transportation sums correctly. Treated with the rest of surface transit."
     },
     {
@@ -476,8 +398,6 @@
       "tier": "freight_dependent_service",
       "tier_label": "Service that runs on trucked inputs",
       "diesel_exposed": true,
-      "intensity": 0.003,
-      "embedded": 0.0103,
       "narrative": "Physician, dental and eye care. The labor is local, but the consumables -- gloves, reagents, instruments, drugs -- arrive on a daily medical-supply route."
     },
     {
@@ -488,8 +408,6 @@
       "tier": "freight_dependent_service",
       "tier_label": "Service that runs on trucked inputs",
       "diesel_exposed": true,
-      "intensity": 0.004,
-      "embedded": 0.0105,
       "narrative": "Hospitals run on continuous resupply: sterile goods, drugs, linens, food service, medical gases and waste hauling. A hospital loading dock is busier than most warehouses."
     },
     {
@@ -500,8 +418,6 @@
       "tier": "light_freight",
       "tier_label": "Light freight",
       "diesel_exposed": true,
-      "intensity": 0.004,
-      "embedded": 0.0054,
       "narrative": "Pharmaceuticals are light and valuable, but they move through a tightly controlled, often temperature-controlled network of frequent, small, time-definite truck deliveries to every pharmacy in the country."
     },
     {
@@ -512,8 +428,6 @@
       "tier": "none",
       "tier_label": "No meaningful diesel content",
       "diesel_exposed": false,
-      "intensity": 0.0,
-      "embedded": 0.0,
       "narrative": "As the CPI measures it, this is the retained earnings of health insurers rather than a physical product. No freight content at all."
     },
     {
@@ -524,8 +438,6 @@
       "tier": "light_freight",
       "tier_label": "Light freight",
       "diesel_exposed": true,
-      "intensity": 0.006,
-      "embedded": 0.0008,
       "narrative": "Wheelchairs, walkers, monitors and supplies, shipped from national distributors to pharmacies, clinics and homes."
     },
     {
@@ -536,8 +448,6 @@
       "tier": "none",
       "tier_label": "No meaningful diesel content",
       "diesel_exposed": false,
-      "intensity": 0.0,
-      "embedded": 0.0,
       "narrative": "Gym, warehouse-club and organization dues. This is a fee for the right to walk in the door, not for anything delivered \u2014 the goods a warehouse club sells are priced in the food and household categories instead."
     },
     {
@@ -548,8 +458,6 @@
       "tier": "none",
       "tier_label": "No meaningful diesel content",
       "diesel_exposed": false,
-      "intensity": 0.0,
-      "embedded": 0.0,
       "narrative": "Tickets to films, concerts and games, priced on venue capacity and demand. No freight content."
     },
     {
@@ -560,8 +468,6 @@
       "tier": "heavy_freight",
       "tier_label": "Heavy freight",
       "diesel_exposed": true,
-      "intensity": 0.017,
-      "embedded": 0.0104,
       "narrative": "Pet food is the story here \u2014 dry kibble by the sack, on ordinary dry vans. It is heavy, cheap per pound and bought in bulk, which gives it one of the highest ratios of freight cost to retail price of any consumer good."
     },
     {
@@ -572,8 +478,6 @@
       "tier": "none",
       "tier_label": "No meaningful diesel content",
       "diesel_exposed": false,
-      "intensity": 0.0,
-      "embedded": 0.0,
       "narrative": "Delivered over cable, satellite and broadband. Once the wire is in the ground nothing physical moves, so there is no freight in the monthly bill at all."
     },
     {
@@ -584,8 +488,6 @@
       "tier": "freight_dependent_service",
       "tier_label": "Service that runs on trucked inputs",
       "diesel_exposed": true,
-      "intensity": 0.004,
-      "embedded": 0.0022,
       "narrative": "Veterinary practices take the same daily supply deliveries as human clinics: drugs, consumables, lab reagents."
     },
     {
@@ -596,8 +498,6 @@
       "tier": "light_freight",
       "tier_label": "Light freight",
       "diesel_exposed": true,
-      "intensity": 0.009,
-      "embedded": 0.0026,
       "narrative": "Almost entirely imported and notoriously bulky for their weight, which makes toys expensive to move relative to what they cost to make."
     },
     {
@@ -608,8 +508,6 @@
       "tier": "heavy_freight",
       "tier_label": "Heavy freight",
       "diesel_exposed": true,
-      "intensity": 0.014,
-      "embedded": 0.004,
       "narrative": "Bicycles, boats and off-road vehicles: large, heavy, and shipped part-assembled in packaging that eats trailer space."
     },
     {
@@ -620,8 +518,6 @@
       "tier": "light_freight",
       "tier_label": "Light freight",
       "diesel_exposed": true,
-      "intensity": 0.009,
-      "embedded": 0.0021,
       "narrative": "Bats, weights and camping gear fill a trailer's volume long before they reach its weight limit."
     },
     {
@@ -632,8 +528,6 @@
       "tier": "none",
       "tier_label": "No meaningful diesel content",
       "diesel_exposed": false,
-      "intensity": 0.0,
-      "embedded": 0.0,
       "narrative": "A BLS residual for recreation services not separately priced. No specific freight mechanism to attribute."
     },
     {
@@ -644,8 +538,6 @@
       "tier": "none",
       "tier_label": "No meaningful diesel content",
       "diesel_exposed": false,
-      "intensity": 0.0,
-      "embedded": 0.0,
       "narrative": "Once discs shipped in cases by the millions; now this is overwhelmingly streaming, delivered over the internet. One of the few categories where diesel exposure has genuinely fallen to near zero over time."
     },
     {
@@ -656,8 +548,6 @@
       "tier": "none",
       "tier_label": "No meaningful diesel content",
       "diesel_exposed": false,
-      "intensity": 0.0,
-      "embedded": 0.0,
       "narrative": "Music, driving and tutoring lessons. Paying for a person's time and expertise in a room that already exists \u2014 nothing is manufactured and nothing is shipped."
     },
     {
@@ -668,8 +558,6 @@
       "tier": "light_freight",
       "tier_label": "Light freight",
       "diesel_exposed": true,
-      "intensity": 0.009,
-      "embedded": 0.001,
       "narrative": "Large, fragile and low-density. A television takes far more trailer space than its weight suggests, and its fragility keeps it on trucks rather than cheaper modes."
     },
     {
@@ -680,8 +568,6 @@
       "tier": "none",
       "tier_label": "No meaningful diesel content",
       "diesel_exposed": false,
-      "intensity": 0.0,
-      "embedded": 0.0,
       "narrative": "Effectively all streaming now, delivered as bits. The vinyl revival is real but far too small to put meaningful freight back into this category."
     },
     {
@@ -692,8 +578,6 @@
       "tier": "light_freight",
       "tier_label": "Light freight",
       "diesel_exposed": true,
-      "intensity": 0.011,
-      "embedded": 0.0007,
       "narrative": "Paper is heavy. Books have one of the worst weight-to-value ratios in retail, which is exactly why the industry consolidated into a handful of enormous distribution centers served by dedicated truck fleets."
     },
     {
@@ -704,8 +588,6 @@
       "tier": "light_freight",
       "tier_label": "Light freight",
       "diesel_exposed": true,
-      "intensity": 0.011,
-      "embedded": 0.0006,
       "narrative": "What is left of print still moves by truck against a daily deadline, which is about as freight-sensitive as delivery gets."
     },
     {
@@ -716,8 +598,6 @@
       "tier": "light_freight",
       "tier_label": "Light freight",
       "diesel_exposed": true,
-      "intensity": 0.006,
-      "embedded": 0.0003,
       "narrative": "Speakers and headphones, imported and boxed. Speakers in particular carry heavy magnets and cabinets, so they cost more to move than their size suggests."
     },
     {
@@ -728,8 +608,6 @@
       "tier": "light_freight",
       "tier_label": "Light freight",
       "diesel_exposed": true,
-      "intensity": 0.009,
-      "embedded": 0.0004,
       "narrative": "Instruments are fragile and oddly shaped, which rules out dense packing and keeps them on carefully handled truck freight."
     },
     {
@@ -740,8 +618,6 @@
       "tier": "none",
       "tier_label": "No meaningful diesel content",
       "diesel_exposed": false,
-      "intensity": 0.0,
-      "embedded": 0.0,
       "narrative": "A service priced on a photographer's time. Processing that once meant shipping film and prints is now almost entirely digital."
     },
     {
@@ -752,8 +628,6 @@
       "tier": "light_freight",
       "tier_label": "Light freight",
       "diesel_exposed": true,
-      "intensity": 0.009,
-      "embedded": 0.0003,
       "narrative": "Bolts of fabric are dense and heavy, and machines are boxed and awkward to stack. Both are trucked, and neither packs efficiently."
     },
     {
@@ -764,8 +638,6 @@
       "tier": "light_freight",
       "tier_label": "Light freight",
       "diesel_exposed": true,
-      "intensity": 0.003,
-      "embedded": 0.0001,
       "narrative": "Cameras and lenses are small, valuable and often air-freighted, so they spend little time on a truck relative to what they cost."
     },
     {
@@ -776,8 +648,6 @@
       "tier": "light_freight",
       "tier_label": "Light freight",
       "diesel_exposed": true,
-      "intensity": 0.006,
-      "embedded": 0.0001,
       "narrative": "Streaming boxes, projectors and accessories \u2014 light, boxed electronics on the standard port-to-warehouse-to-store road network."
     },
     {
@@ -788,8 +658,6 @@
       "tier": "light_freight",
       "tier_label": "Light freight",
       "diesel_exposed": true,
-      "intensity": 0.006,
-      "embedded": 0.0001,
       "narrative": "A BLS residual covering recreation goods not separately priced. They are physical goods, so they ride the same trucks."
     },
     {
@@ -800,8 +668,6 @@
       "tier": "light_freight",
       "tier_label": "Light freight",
       "diesel_exposed": true,
-      "intensity": 0.009,
-      "embedded": 0.0001,
       "narrative": "A BLS residual for sporting goods not separately priced. Bulky for their weight, like the rest of the category, so they ride the same trucks."
     },
     {
@@ -812,8 +678,6 @@
       "tier": "light_freight",
       "tier_label": "Light freight",
       "diesel_exposed": true,
-      "intensity": 0.006,
-      "embedded": 0.0,
       "narrative": "A BLS residual for video and audio goods not separately priced. They are physical, boxed electronics, so they move on the same import and distribution routes as the rest."
     },
     {
@@ -824,8 +688,6 @@
       "tier": "light_freight",
       "tier_label": "Light freight",
       "diesel_exposed": true,
-      "intensity": 0.003,
-      "embedded": 0.0,
       "narrative": "A BLS residual for photography not separately priced. It carries essentially no weight in the index, but it is grouped with the goods rather than the services."
     },
     {
@@ -836,8 +698,6 @@
       "tier": "light_freight",
       "tier_label": "Light freight",
       "diesel_exposed": true,
-      "intensity": 0.011,
-      "embedded": 0.0,
       "narrative": "A BLS residual for reading material not separately priced. Printed matter is heavy paper on the same truck network as books and magazines."
     },
     {
@@ -848,8 +708,6 @@
       "tier": "none",
       "tier_label": "No meaningful diesel content",
       "diesel_exposed": false,
-      "intensity": 0.0,
-      "embedded": 0.0,
       "narrative": "Wireless and residential phone service, internet access, and the computer hardware that goes with them. The services travel over networks and the hardware is light, valuable and often air-freighted. At 3.2% of the index this is a large, essentially diesel-free block."
     },
     {
@@ -860,8 +718,6 @@
       "tier": "none",
       "tier_label": "No meaningful diesel content",
       "diesel_exposed": false,
-      "intensity": 0.0,
-      "embedded": 0.0,
       "narrative": "Salaries, facilities and administration. Schools do take deliveries, but tuition is priced on staffing and enrollment, not on what arrives at the loading dock."
     },
     {
@@ -872,8 +728,6 @@
       "tier": "diesel_service",
       "tier_label": "Delivered by a diesel vehicle",
       "diesel_exposed": true,
-      "intensity": 0.12,
-      "embedded": 0.0077,
       "narrative": "Parcel and mail delivery, priced directly. Every package moves through diesel line-haul between sorting hubs before it reaches a local van. This is one of the few places in the CPI where households pay for freight explicitly instead of having it buried inside a product price."
     },
     {
@@ -884,8 +738,6 @@
       "tier": "light_freight",
       "tier_label": "Light freight",
       "diesel_exposed": true,
-      "intensity": 0.011,
-      "embedded": 0.0004,
       "narrative": "Textbooks are heavy paper shipped against a hard seasonal deadline, which is the expensive way to move freight \u2014 the trucks have to run whether or not they are full."
     },
     {
@@ -896,8 +748,6 @@
       "tier": "none",
       "tier_label": "No meaningful diesel content",
       "diesel_exposed": false,
-      "intensity": 0.0,
-      "embedded": 0.0,
       "narrative": "Legal, financial and funeral services, priced on professional time and billed by the hour. Nothing here moves on a road."
     },
     {
@@ -908,8 +758,6 @@
       "tier": "none",
       "tier_label": "No meaningful diesel content",
       "diesel_exposed": false,
-      "intensity": 0.0,
-      "embedded": 0.0,
       "narrative": "Haircuts, salons and spas \u2014 labor sold by the appointment. The products on the shelf behind the chair are counted under personal care products instead."
     },
     {
@@ -920,8 +768,6 @@
       "tier": "light_freight",
       "tier_label": "Light freight",
       "diesel_exposed": true,
-      "intensity": 0.009,
-      "embedded": 0.0061,
       "narrative": "Shampoo, soap and cosmetics are mostly water by weight, shipped in heavy liquid form to every drugstore and big-box shelf in the country."
     },
     {
@@ -932,8 +778,6 @@
       "tier": "light_freight",
       "tier_label": "Light freight",
       "diesel_exposed": true,
-      "intensity": 0.006,
-      "embedded": 0.002,
       "narrative": "Light, valuable, and moved on secure, frequent truck routes to convenience stores. Freight is a small share of a price dominated by excise tax."
     },
     {
@@ -944,8 +788,6 @@
       "tier": "light_freight",
       "tier_label": "Light freight",
       "diesel_exposed": true,
-      "intensity": 0.006,
-      "embedded": 0.0011,
       "narrative": "Luggage, handbags and small personal items. Almost entirely imported, and luggage in particular is mostly air inside a shell, so it burns trailer space rather than payload."
     },
     {
@@ -956,8 +798,6 @@
       "tier": "light_freight",
       "tier_label": "Light freight",
       "diesel_exposed": true,
-      "intensity": 0.006,
-      "embedded": 0.0007,
       "narrative": "Cigars, pipe and smokeless tobacco, moving on the same secure, frequent truck routes to convenience stores as cigarettes."
     },
     {
@@ -968,8 +808,6 @@
       "tier": "light_freight",
       "tier_label": "Light freight",
       "diesel_exposed": true,
-      "intensity": 0.006,
-      "embedded": 0.0,
       "narrative": "A BLS residual for tobacco products not separately priced. It follows the same convenience-store delivery network as the rest of the category."
     }
   ],
@@ -983,53 +821,42 @@
     "diesel_direct": 0.086,
     "gasoline_over_diesel_direct": 33.7,
     "reach_ratio": 15.3,
-    "embedded_diesel": 0.84,
-    "embedded_vs_gasoline": 0.29,
     "by_tier": {
       "cold_chain": {
         "weight": 8.325,
-        "count": 1,
-        "embedded": 0.1665
+        "count": 1
       },
       "freight_dependent_service": {
         "weight": 15.615,
-        "count": 8,
-        "embedded": 0.0933
+        "count": 8
       },
       "heavy_freight": {
         "weight": 11.178,
-        "count": 9,
-        "embedded": 0.1227
+        "count": 9
       },
       "none": {
         "weight": 48.583,
-        "count": 18,
-        "embedded": 0.0
+        "count": 18
       },
       "other_fuel": {
         "weight": 4.143,
-        "count": 2,
-        "embedded": 0.0326
+        "count": 2
       },
       "diesel_service": {
         "weight": 1.812,
-        "count": 5,
-        "embedded": 0.2124
+        "count": 5
       },
       "light_freight": {
         "weight": 7.221,
-        "count": 35,
-        "embedded": 0.0477
+        "count": 35
       },
       "direct_diesel": {
         "weight": 0.226,
-        "count": 2,
-        "embedded": 0.1657
+        "count": 2
       },
       "gasoline_direct": {
         "weight": 2.895,
-        "count": 1,
-        "embedded": 0.0
+        "count": 1
       }
     }
   },
