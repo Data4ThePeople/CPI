@@ -75,26 +75,26 @@ EXPOSURE: Dict[str, Assignment] = {
 
     # ---- Food and beverages ------------------------------------------------
     "Food at home": A(
-        "cold_chain", 0.07,
+        "cold_chain", 0.02,
         "Nearly everything in a grocery store arrives on a diesel truck, most "
         "of it more than once a week. Produce, meat, dairy and dry goods all "
         "move farm to processor to distribution center to store, and every leg "
         "burns diesel. This is the clearest case in the whole basket: when "
         "diesel moves, grocery prices follow."),
     "Food away from home": A(
-        "freight_dependent_service", 0.03,
+        "freight_dependent_service", 0.009,
         "Restaurant inputs arrive by truck. A typical kitchen takes deliveries "
         "of produce, meat, dry goods and beverages several times a week from "
         "diesel distribution fleets, and the menu price carries that freight "
         "even though the diner never sees a line item for it."),
     "Alcoholic beverages away from home": A(
-        "freight_dependent_service", 0.02,
+        "freight_dependent_service", 0.006,
         "Beer, wine and spirits reach bars and restaurants through a three-tier "
         "distribution system that is entirely truck-based. Liquid is heavy and "
         "cheap per pound, so freight is a bigger share of its delivered cost "
         "than most people would guess."),
     "Alcoholic beverages at home": A(
-        "heavy_freight", 0.05,
+        "heavy_freight", 0.014,
         "Bottled and canned drinks are some of the densest freight in retail. "
         "Distributors run dedicated diesel routes to every store, and the "
         "weight-to-value ratio means a fuel move reaches the shelf price faster "
@@ -120,38 +120,38 @@ EXPOSURE: Dict[str, Assignment] = {
         "gas and coal, not diesel, so it is kept out of the diesel total on "
         "purpose."),
     "Lodging away from home": A(
-        "freight_dependent_service", 0.02,
+        "freight_dependent_service", 0.006,
         "Hotels consume trucked goods continuously -- linens, food, cleaning "
         "supplies, amenities -- on a resupply cadence closer to a restaurant's "
         "than an office's."),
     "Water and sewer and trash collection services": A(
-        "diesel_service", 0.10,
+        "diesel_service", 0.1,
         "Refuse collection is one of the most diesel-intensive services a "
         "household buys. Garbage trucks are heavy, stop every few hundred feet, "
         "idle while they load, and post some of the worst fuel economy of any "
         "vehicle class on the road."),
     "Furniture and bedding": A(
-        "heavy_freight", 0.06,
+        "heavy_freight", 0.017,
         "Bulky, heavy and awkward to pack, furniture is close to a worst case "
         "for freight economics: it fills a trailer by volume long before it "
         "fills it by weight, then often takes a second diesel leg for delivery "
         "into the house."),
     "Household operations": A(
-        "freight_dependent_service", 0.02,
+        "freight_dependent_service", 0.006,
         "Housekeeping, gardening, moving and storage. Moving is diesel from end "
         "to end, and the lawn and garden trades tow equipment to every job."),
     "Housekeeping supplies": A(
-        "light_freight", 0.03,
+        "light_freight", 0.009,
         "Detergents, paper goods and cleaners are heavy and cheap per pound. "
         "Water and wood pulp travel a long way by truck before anyone buys "
         "them."),
     "Tools, hardware, outdoor equipment and supplies": A(
-        "heavy_freight", 0.05,
+        "heavy_freight", 0.014,
         "Lumber, fasteners, paint, mowers and grills. Home-center inventory is "
         "dense, heavy and restocked constantly by dedicated fleets running out "
         "of regional distribution centers."),
     "Other household equipment and furnishings": A(
-        "heavy_freight", 0.04,
+        "heavy_freight", 0.011,
         "Cookware, dishes, lamps and decor, trucked from port or plant to "
         "distribution center to store. Breakage risk keeps it on roads rather "
         "than cheaper modes."),
@@ -160,11 +160,11 @@ EXPOSURE: Dict[str, Assignment] = {
         "A financial contract. Premiums move with claims experience and "
         "interest rates, not with the cost of moving anything."),
     "Window and floor coverings and other linens": A(
-        "light_freight", 0.03,
+        "light_freight", 0.009,
         "Textiles and floor coverings, mostly imported and then trucked inland "
         "from the port. Rolled carpet in particular is heavy, bulky freight."),
     "Appliances": A(
-        "heavy_freight", 0.06,
+        "heavy_freight", 0.017,
         "Refrigerators, washers and ranges are the textbook definition of heavy "
         "freight: high weight, high volume, few units per trailer, and usually a "
         "second diesel leg for delivery and installation."),
@@ -175,7 +175,7 @@ EXPOSURE: Dict[str, Assignment] = {
     # all, so for most of that second piece the only diesel is the delivery
     # truck. Weighting 59% at 0.90 against 41% at ~0.20 lands near 0.60.
     "Fuel oil and other fuels": A(
-        "direct_diesel", 0.60,
+        "direct_diesel", 0.6,
         "Home heating oil is essentially diesel. It comes off the same "
         "distillate cut of the barrel, competes for the same refinery output, "
         "and arrives at the house on a diesel tanker truck. When diesel moves, "
@@ -183,55 +183,55 @@ EXPOSURE: Dict[str, Assignment] = {
 
     # ---- Apparel -----------------------------------------------------------
     "Women's apparel": A(
-        "light_freight", 0.02,
+        "light_freight", 0.006,
         "Overwhelmingly imported, then trucked from port to distribution center "
         "to store or doorstep. Clothing is light for its value, so freight is a "
         "small share of the price -- but it is never zero, and e-commerce has "
         "added diesel legs to garments that used to make only one trip."),
     "Men's apparel": A(
-        "light_freight", 0.02,
+        "light_freight", 0.006,
         "The same import-and-truck path as the rest of apparel: container to "
         "port, a short diesel drayage move to a distribution center, then "
         "line-haul to wherever it is sold."),
     "Women's footwear": A(
-        "light_freight", 0.02,
+        "light_freight", 0.006,
         "Shoes ship in boxes that waste a lot of trailer space for their "
         "weight, which pushes freight cost per pair above what the materials "
         "alone would suggest."),
     "Men's footwear": A(
-        "light_freight", 0.02,
+        "light_freight", 0.006,
         "Boxed, bulky for its weight, and moved through the same port-to-"
         "distribution-center truck network as the rest of footwear."),
     "Girls' apparel": A(
-        "light_freight", 0.02,
+        "light_freight", 0.006,
         "Imported and trucked inland. Small garments, small freight share, but "
         "the same road network underneath."),
     "Jewelry": A(
-        "light_freight", 0.005,
+        "light_freight", 0.001,
         "Almost pure value with almost no weight. Jewelry tends to move by "
         "air and secure courier rather than freight truck, making it one of the "
         "least diesel-exposed physical goods in the basket."),
     "Boys' and girls' footwear": A(
-        "light_freight", 0.02,
+        "light_freight", 0.006,
         "The same boxed, low-density freight profile as adult footwear, on the "
         "same truck routes — a lot of trailer space for very little weight."),
     "Boys' apparel": A(
-        "light_freight", 0.02,
+        "light_freight", 0.006,
         "Imported, containerized, then trucked to store or doorstep. Small "
         "garments make the same three road moves as large ones."),
     "Infants' and toddlers' apparel": A(
-        "light_freight", 0.02,
+        "light_freight", 0.006,
         "Light goods on the standard import-and-truck path; freight is a small "
         "but real slice of the price."),
     "Watches": A(
-        "light_freight", 0.005,
+        "light_freight", 0.001,
         "High value, negligible weight, and frequently air-freighted. Along "
         "with jewelry, this is about as close to diesel-free as a physical "
         "good in the basket gets."),
 
     # ---- Transportation ----------------------------------------------------
     "New and used motor vehicles": A(
-        "heavy_freight", 0.03,
+        "heavy_freight", 0.009,
         "A finished car weighs two tons and travels by rail and specialised "
         "diesel car-hauler, usually both. Its parts made several diesel trips "
         "before assembly and it makes at least one more to the dealer lot. At "
@@ -250,7 +250,7 @@ EXPOSURE: Dict[str, Assignment] = {
         "litigation. The repairs carry a little freight; the insurance itself "
         "burns nothing."),
     "Motor vehicle maintenance and repair": A(
-        "freight_dependent_service", 0.02,
+        "freight_dependent_service", 0.006,
         "Every part on a shop's shelf got there by truck, and the parts "
         "distribution network runs several deliveries a day to keep the bays "
         "moving."),
@@ -275,7 +275,7 @@ EXPOSURE: Dict[str, Assignment] = {
         "diesel-hybrid, and fuel is one of the largest controllable line items "
         "in an agency's operating budget."),
     "Motor vehicle parts and equipment": A(
-        "heavy_freight", 0.04,
+        "heavy_freight", 0.011,
         "Tires dominate this category, and they are a freight planner's "
         "problem: heavy, bulky, and impossible to stack efficiently."),
     "Other intercity transportation": A(
@@ -291,23 +291,23 @@ EXPOSURE: Dict[str, Assignment] = {
         "households pump themselves. It says nothing about the diesel burned to "
         "deliver everything else they buy."),
     "Unsampled public transportation": A(
-        "diesel_service", 0.10,
+        "diesel_service", 0.1,
         "A residual line BLS carries so public transportation sums correctly. "
         "Treated with the rest of surface transit."),
 
     # ---- Medical care ------------------------------------------------------
     "Professional services": A(
-        "freight_dependent_service", 0.01,
+        "freight_dependent_service", 0.003,
         "Physician, dental and eye care. The labor is local, but the "
         "consumables -- gloves, reagents, instruments, drugs -- arrive on a "
         "daily medical-supply route."),
     "Hospital and related services": A(
-        "freight_dependent_service", 0.015,
+        "freight_dependent_service", 0.004,
         "Hospitals run on continuous resupply: sterile goods, drugs, linens, "
         "food service, medical gases and waste hauling. A hospital loading dock "
         "is busier than most warehouses."),
     "Medicinal drugs": A(
-        "light_freight", 0.015,
+        "light_freight", 0.004,
         "Pharmaceuticals are light and valuable, but they move through a "
         "tightly controlled, often temperature-controlled network of frequent, "
         "small, time-definite truck deliveries to every pharmacy in the "
@@ -317,7 +317,7 @@ EXPOSURE: Dict[str, Assignment] = {
         "As the CPI measures it, this is the retained earnings of health "
         "insurers rather than a physical product. No freight content at all."),
     "Medical equipment and supplies": A(
-        "light_freight", 0.02,
+        "light_freight", 0.006,
         "Wheelchairs, walkers, monitors and supplies, shipped from national "
         "distributors to pharmacies, clinics and homes."),
 
@@ -333,7 +333,7 @@ EXPOSURE: Dict[str, Assignment] = {
         "Tickets to films, concerts and games, priced on venue capacity and "
         "demand. No freight content."),
     "Pets and pet products": A(
-        "heavy_freight", 0.06,
+        "heavy_freight", 0.017,
         "Pet food is the story here — dry kibble by the sack, on ordinary dry "
         "vans. It is heavy, cheap per pound and bought in bulk, which gives it "
         "one of the highest ratios of freight cost to retail price of any "
@@ -344,19 +344,19 @@ EXPOSURE: Dict[str, Assignment] = {
         "ground nothing physical moves, so there is no freight in the monthly "
         "bill at all."),
     "Pet services including veterinary": A(
-        "freight_dependent_service", 0.015,
+        "freight_dependent_service", 0.004,
         "Veterinary practices take the same daily supply deliveries as human "
         "clinics: drugs, consumables, lab reagents."),
     "Toys": A(
-        "light_freight", 0.03,
+        "light_freight", 0.009,
         "Almost entirely imported and notoriously bulky for their weight, which "
         "makes toys expensive to move relative to what they cost to make."),
     "Sports vehicles including bicycles": A(
-        "heavy_freight", 0.05,
+        "heavy_freight", 0.014,
         "Bicycles, boats and off-road vehicles: large, heavy, and shipped part-"
         "assembled in packaging that eats trailer space."),
     "Sports equipment": A(
-        "light_freight", 0.03,
+        "light_freight", 0.009,
         "Bats, weights and camping gear fill a trailer's volume long before "
         "they reach its weight limit."),
     "Unsampled recreation services": A(
@@ -374,7 +374,7 @@ EXPOSURE: Dict[str, Assignment] = {
         "expertise in a room that already exists — nothing is manufactured and "
         "nothing is shipped."),
     "Televisions": A(
-        "light_freight", 0.03,
+        "light_freight", 0.009,
         "Large, fragile and low-density. A television takes far more trailer "
         "space than its weight suggests, and its fragility keeps it on trucks "
         "rather than cheaper modes."),
@@ -384,21 +384,21 @@ EXPOSURE: Dict[str, Assignment] = {
         "real but far too small to put meaningful freight back into this "
         "category."),
     "Recreational books": A(
-        "light_freight", 0.04,
+        "light_freight", 0.011,
         "Paper is heavy. Books have one of the worst weight-to-value ratios in "
         "retail, which is exactly why the industry consolidated into a handful "
         "of enormous distribution centers served by dedicated truck fleets."),
     "Newspapers and magazines": A(
-        "light_freight", 0.04,
+        "light_freight", 0.011,
         "What is left of print still moves by truck against a daily deadline, "
         "which is about as freight-sensitive as delivery gets."),
     "Audio equipment": A(
-        "light_freight", 0.02,
+        "light_freight", 0.006,
         "Speakers and headphones, imported and boxed. Speakers in particular "
         "carry heavy magnets and cabinets, so they cost more to move than their "
         "size suggests."),
     "Music instruments and accessories": A(
-        "light_freight", 0.03,
+        "light_freight", 0.009,
         "Instruments are fragile and oddly shaped, which rules out dense "
         "packing and keeps them on carefully handled truck freight."),
     "Photographers and photo processing": A(
@@ -406,38 +406,38 @@ EXPOSURE: Dict[str, Assignment] = {
         "A service priced on a photographer's time. Processing that once meant "
         "shipping film and prints is now almost entirely digital."),
     "Sewing machines, fabric and supplies": A(
-        "light_freight", 0.03,
+        "light_freight", 0.009,
         "Bolts of fabric are dense and heavy, and machines are boxed and awkward "
         "to stack. Both are trucked, and neither packs efficiently."),
     "Photographic equipment and supplies": A(
-        "light_freight", 0.01,
+        "light_freight", 0.003,
         "Cameras and lenses are small, valuable and often air-freighted, so they "
         "spend little time on a truck relative to what they cost."),
     "Other video equipment": A(
-        "light_freight", 0.02,
+        "light_freight", 0.006,
         "Streaming boxes, projectors and accessories — light, boxed electronics "
         "on the standard port-to-warehouse-to-store road network."),
     "Unsampled recreation commodities": A(
-        "light_freight", 0.02,
+        "light_freight", 0.006,
         "A BLS residual covering recreation goods not separately priced. They "
         "are physical goods, so they ride the same trucks."),
     "Unsampled sporting goods": A(
-        "light_freight", 0.03,
+        "light_freight", 0.009,
         "A BLS residual for sporting goods not separately priced. Bulky for "
         "their weight, like the rest of the category, so they ride the same "
         "trucks."),
     "Unsampled video and audio": A(
-        "light_freight", 0.02,
+        "light_freight", 0.006,
         "A BLS residual for video and audio goods not separately priced. They "
         "are physical, boxed electronics, so they move on the same import and "
         "distribution routes as the rest."),
     "Unsampled photography": A(
-        "light_freight", 0.01,
+        "light_freight", 0.003,
         "A BLS residual for photography not separately priced. It carries "
         "essentially no weight in the index, but it is grouped with the goods "
         "rather than the services."),
     "Unsampled recreational reading materials": A(
-        "light_freight", 0.04,
+        "light_freight", 0.011,
         "A BLS residual for reading material not separately priced. Printed "
         "matter is heavy paper on the same truck network as books and "
         "magazines."),
@@ -462,7 +462,7 @@ EXPOSURE: Dict[str, Assignment] = {
         "freight explicitly instead of having it buried inside a product "
         "price."),
     "Educational books and supplies": A(
-        "light_freight", 0.04,
+        "light_freight", 0.011,
         "Textbooks are heavy paper shipped against a hard seasonal deadline, "
         "which is the expensive way to move freight — the trucks have to run "
         "whether or not they are full."),
@@ -478,26 +478,26 @@ EXPOSURE: Dict[str, Assignment] = {
         "on the shelf behind the chair are counted under personal care products "
         "instead."),
     "Personal care products": A(
-        "light_freight", 0.03,
+        "light_freight", 0.009,
         "Shampoo, soap and cosmetics are mostly water by weight, shipped in "
         "heavy liquid form to every drugstore and big-box shelf in the "
         "country."),
     "Cigarettes": A(
-        "light_freight", 0.02,
+        "light_freight", 0.006,
         "Light, valuable, and moved on secure, frequent truck routes to "
         "convenience stores. Freight is a small share of a price dominated by "
         "excise tax."),
     "Miscellaneous personal goods": A(
-        "light_freight", 0.02,
+        "light_freight", 0.006,
         "Luggage, handbags and small personal items. Almost entirely imported, "
         "and luggage in particular is mostly air inside a shell, so it burns "
         "trailer space rather than payload."),
     "Tobacco products other than cigarettes": A(
-        "light_freight", 0.02,
+        "light_freight", 0.006,
         "Cigars, pipe and smokeless tobacco, moving on the same secure, frequent "
         "truck routes to convenience stores as cigarettes."),
     "Unsampled tobacco and smoking products": A(
-        "light_freight", 0.02,
+        "light_freight", 0.006,
         "A BLS residual for tobacco products not separately priced. It follows "
         "the same convenience-store delivery network as the rest of the "
         "category."),
