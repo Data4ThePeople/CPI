@@ -59,7 +59,7 @@ That is the argument, in one click.
 
 A few things worth noticing on the map:
 
-**Food is the clearest case.** Food at home is 8.3% of the index on its own, and essentially every item in a grocery store arrives on a refrigerated diesel truck, most of them more than once a week. Restaurants add another 5.4%.
+**Food is the clearest case.** Food at home is 8.3% of the index on its own, and essentially every item in a grocery store arrives on a diesel truck, most of them more than once a week. Restaurants add another 5.4%.
 
 **The biggest box is gray.** Owners' equivalent rent — what a homeowner would pay to rent their own house — is 26.2% of the index by itself, and no truck touches it. Add rent and you have a third of the basket that diesel simply cannot reach. That gray mass is why the number is 44.4% and not 80%.
 
@@ -86,7 +86,7 @@ You'll know what it means now.
 
 ### How do diesel prices affect the economy?
 
-Diesel moves freight, and freight moves nearly every physical good before anyone buys it. Groceries reach the store on refrigerated diesel trucks, restaurants take deliveries several times a week, cars and appliances travel by diesel rail and truck, and parcels move through diesel line-haul between sorting hubs. That is why a diesel shock spreads across the economy rather than landing in one place: it raises the delivered cost of categories making up 44.4% of the Consumer Price Index, in 60 of the 81 categories the index is built from. Gasoline, by contrast, is something households buy and burn themselves — it is 2.9% of the index and an input to very little else.
+Diesel moves freight, and freight moves nearly every physical good before anyone buys it. Groceries reach the store on diesel trucks, restaurants take deliveries several times a week, cars and appliances travel by diesel rail and truck, and parcels move through diesel line-haul between sorting hubs. That is why a diesel shock spreads across the economy rather than landing in one place: it raises the delivered cost of categories making up 44.4% of the Consumer Price Index, in 60 of the 81 categories the index is built from. Gasoline, by contrast, is something households buy and burn themselves — it is 2.9% of the index and an input to very little else.
 
 ### Why do diesel prices matter more than gasoline prices?
 

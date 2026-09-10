@@ -6,11 +6,11 @@
       "major_group": "Food and beverages",
       "weight": 8.325,
       "tier": "cold_chain",
-      "tier_label": "Refrigerated freight",
+      "tier_label": "Grocery freight",
       "diesel_exposed": true,
       "intensity": 0.07,
       "embedded": 0.5827,
-      "narrative": "Nearly everything in a grocery store arrives on a refrigerated diesel truck, most of it more than once a week. Produce, dairy and meat move farm to processor to distribution center to store, and every leg burns diesel. This is the clearest case in the whole basket: when diesel moves, grocery prices follow."
+      "narrative": "Nearly everything in a grocery store arrives on a diesel truck, most of it more than once a week. Produce, meat, dairy and dry goods all move farm to processor to distribution center to store, and every leg burns diesel. This is the clearest case in the whole basket: when diesel moves, grocery prices follow."
     },
     {
       "item_name": "Food away from home",
@@ -557,12 +557,12 @@
       "display_name": "Pets and pet products",
       "major_group": "Recreation",
       "weight": 0.612,
-      "tier": "cold_chain",
-      "tier_label": "Refrigerated freight",
+      "tier": "heavy_freight",
+      "tier_label": "Heavy freight",
       "diesel_exposed": true,
       "intensity": 0.06,
       "embedded": 0.0367,
-      "narrative": "Pet food is the story here. It is heavy, cheap per pound and bought in bulk -- one of the highest ratios of freight cost to retail price of any consumer good."
+      "narrative": "Pet food is the story here \u2014 dry kibble by the sack, on ordinary dry vans. It is heavy, cheap per pound and bought in bulk, which gives it one of the highest ratios of freight cost to retail price of any consumer good."
     },
     {
       "item_name": "Cable, satellite, and live streaming television service",
@@ -987,9 +987,9 @@
     "embedded_vs_gasoline": 0.67,
     "by_tier": {
       "cold_chain": {
-        "weight": 8.937,
-        "count": 2,
-        "embedded": 0.6194
+        "weight": 8.325,
+        "count": 1,
+        "embedded": 0.5827
       },
       "freight_dependent_service": {
         "weight": 15.615,
@@ -997,9 +997,9 @@
         "embedded": 0.3161
       },
       "heavy_freight": {
-        "weight": 10.566,
-        "count": 8,
-        "embedded": 0.3858
+        "weight": 11.178,
+        "count": 9,
+        "embedded": 0.4225
       },
       "none": {
         "weight": 48.583,
@@ -1048,8 +1048,8 @@
     },
     {
       "key": "cold_chain",
-      "label": "Refrigerated freight",
-      "blurb": "Perishable goods moved on refrigerated trucks, often several times a week.",
+      "label": "Grocery freight",
+      "blurb": "The fastest-turning goods in the basket, restocked several times a week.",
       "diesel": true
     },
     {

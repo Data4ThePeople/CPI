@@ -34,8 +34,12 @@ TIERS = {t.key: t for t in [
     Tier("diesel_service", "Delivered by a diesel vehicle",
          "A service whose whole delivery mechanism is a diesel engine.",
          True),
-    Tier("cold_chain", "Refrigerated freight",
-         "Perishable goods moved on refrigerated trucks, often several times a week.",
+    # Not all of it is refrigerated -- roughly half a grocery bill is
+    # shelf-stable and rides an ordinary dry van. Both run on diesel, so the
+    # tier is named for the turnover rather than the temperature.
+    Tier("cold_chain", "Grocery freight",
+         "The fastest-turning goods in the basket, restocked several times a "
+         "week.",
          True),
     Tier("heavy_freight", "Heavy freight",
          "Bulky, low value-density goods where moving them is a large share of what they cost.",
@@ -72,11 +76,11 @@ EXPOSURE: Dict[str, Assignment] = {
     # ---- Food and beverages ------------------------------------------------
     "Food at home": A(
         "cold_chain", 0.07,
-        "Nearly everything in a grocery store arrives on a refrigerated diesel "
-        "truck, most of it more than once a week. Produce, dairy and meat move "
-        "farm to processor to distribution center to store, and every leg burns "
-        "diesel. This is the clearest case in the whole basket: when diesel "
-        "moves, grocery prices follow."),
+        "Nearly everything in a grocery store arrives on a diesel truck, most "
+        "of it more than once a week. Produce, meat, dairy and dry goods all "
+        "move farm to processor to distribution center to store, and every leg "
+        "burns diesel. This is the clearest case in the whole basket: when "
+        "diesel moves, grocery prices follow."),
     "Food away from home": A(
         "freight_dependent_service", 0.03,
         "Restaurant inputs arrive by truck. A typical kitchen takes deliveries "
@@ -318,10 +322,11 @@ EXPOSURE: Dict[str, Assignment] = {
         "Tickets to films, concerts and games, priced on venue capacity and "
         "demand. No freight content."),
     "Pets and pet products": A(
-        "cold_chain", 0.06,
-        "Pet food is the story here. It is heavy, cheap per pound and bought in "
-        "bulk -- one of the highest ratios of freight cost to retail price of "
-        "any consumer good."),
+        "heavy_freight", 0.06,
+        "Pet food is the story here — dry kibble by the sack, on ordinary dry "
+        "vans. It is heavy, cheap per pound and bought in bulk, which gives it "
+        "one of the highest ratios of freight cost to retail price of any "
+        "consumer good."),
     "Cable, satellite, and live streaming television service": A(
         "none", 0.0,
         "Delivered over cable, satellite and broadband. Once the wire is in the "
