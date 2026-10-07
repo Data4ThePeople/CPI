@@ -4,6 +4,28 @@ Mirrors the house pattern in NFP_Treemap/src/nfp_treemap/config.py.
 """
 from __future__ import annotations
 
+# Contact address for the User-Agent: read at run time, never hardcoded in the repo.
+# Set D4TP_CONTACT_EMAIL in the environment or in ~/.claude/d4tp-process/.env.
+import os as _os
+
+
+def _d4tp_contact():
+    v = _os.environ.get("D4TP_CONTACT_EMAIL")
+    if v:
+        return v
+    try:
+        with open(_os.path.expanduser("~/.claude/d4tp-process/.env"), encoding="utf-8") as fh:
+            for line in fh:
+                if line.strip().startswith("D4TP_CONTACT_EMAIL="):
+                    return line.split("=", 1)[1].strip().strip("'\"")
+    except OSError:
+        pass
+    return ""
+
+
+D4TP_CONTACT = _d4tp_contact()
+
+
 import os
 from pathlib import Path
 
@@ -28,7 +50,7 @@ RI_LOCAL = RAW_DIR / f"cpi_relative_importance_{RI_YEAR}.xlsx"
 # download.bls.gov 403s anything without a browser-like prefix (a bare
 # "CPI_Diesel/1.0" or "python-requests/2.32" is rejected), but BLS guidance
 # asks callers to identify themselves with a contact address. Do both.
-CONTACT_EMAIL = os.environ.get("CPI_DIESEL_CONTACT", "D4TP_CONTACT_EMAIL")
+CONTACT_EMAIL = os.environ.get("CPI_DIESEL_CONTACT", f"{D4TP_CONTACT}")
 USER_AGENT = f"Mozilla/5.0 CPI_Diesel/1.0 ({CONTACT_EMAIL})"
 
 # Who built this. Shown in the provenance stamp, which is the one credit line
